@@ -6,3 +6,5 @@ Generate Data for further learning.
 
 # EM Algorithm
 ![beta1 and beta2](https://github.com/Gaochenyin/MCEM/blob/master/3.2.png)
+![sigma1 and sigma2](https://github.com/Gaochenyin/MCEM/blob/master/3.3.png)
+![pi1](https://github.com/Gaochenyin/MCEM/blob/master/3.4.png)
