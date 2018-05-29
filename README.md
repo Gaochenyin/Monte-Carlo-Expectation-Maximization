@@ -1,5 +1,8 @@
 # MCEM
 使用内嵌Metropolis-Hastings step的Gibbs sampling对样本进行抽样,最大化似然函数。采用Netwen Method去计算每次迭代的最佳值，最后改进算法采用Louis information进行加速，只利用后验密度的值来估计参数值。
+## Metropolis-Hasting Step
+由基本的贝叶斯思想可得<a href="https://www.codecogs.com/eqnedit.php?latex=F(Z|\Omega,Y)&space;=&space;F(Z|\Omega)L(\Omega|Y)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F(Z|\Omega,Y)&space;=&space;F(Z|\Omega)L(\Omega|Y)" title="F(Z|\Omega,Y) = F(Z|\Omega)L(\Omega|Y)" /></a>
+## Gibbs Sampler
 ````R
 
 MCEM <- function(seed,N,Time,beta1_0,beta2_0,sigma1_0,sigma2_0,p1_0,iterstep){
