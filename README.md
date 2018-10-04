@@ -25,17 +25,16 @@ the complete data likelihood function as
 
 $$L(\Omega|Y_{ij},U_i,Z_{U_i,i})=\prod_{i=1}^n\prod_{c=1}^2(\pi_cf_c(Z_{c,i})\[\prod_{j=1}^Tf_c(Y_{ij}|Z_{c,i})\])^{w_{i,c}}$$
 
-where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z_{c,i})=P_{ij}^{Y_ij}(1−P_{ij})^{1−Y_{ij}}$. $ω_{ic}$ is the dummy variable of $U_i$, i.e.
+where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z_{c,i})=P_{ij}^{Y_ij}(1−P_{ij})^{1−Y_{ij}}$. $ω_{ic}$ is the dummy variable of $U_i$
 
-$$w_{ic}=\begin{cases}&1    if subject i belongs to cluster c\n
-&0,    otherwise\end{cases}$$
 # Procedures
 
 ## Flow Chart
 
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow.png"  width="400" ></div>
 
 ## Results
-
+* EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
 * For each parameter, we calculate the changing rate of it and let $\epsilon^t$ be as following
 
 $$\epsilon^{t}=max(\frac{\hat{\beta}_1^{t+1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}+\delta},\frac{\hat{\beta}_2^{t+1}-\hat{\beta}_2^{t}}{\hat{\beta}_2^{t}+\delta},\frac{\hat{\sigma}_1^{t+1}-\hat{\sigma}_1^{t}}{\hat{\sigma}_1^{t}+\delta},\frac{\hat{\sigma}_2^{t+1}-\hat{\sigma}_2^{t}}{\hat{\sigma}_2^{t}+\delta},\frac{\hat{\pi}_1^{t+1}-\hat{\pi}_1^{t}}{\hat{\pi}_1^{t}+\delta})$$
@@ -45,9 +44,9 @@ where $\delta>0$ is to assure that the denominator is positive. Setting the thre
 * In this project, we choose $\delta=10^{-12},\epsilon_0=2.5*10^{-2}$
 ### Values
 
-1. Our convergences are pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
+* Our convergences are pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
 
-2. Besides, our project also contain different simulation with different initial value, which also obtain similar result. However, EM alogorithm is highly rely on **random numbers**, the final evaluation of these results is essential.
+* Besides, our project also contain different simulation with different initial value, which also obtain similar result. However, EM alogorithm is highly rely on **random numbers**, the final evaluation of these results is essential.
 
 |Variables  | True Value | Initial Value| Converged Value 
 |------------|------------|------------|------------|
@@ -65,9 +64,9 @@ where $\delta>0$ is to assure that the denominator is positive. Setting the thre
 
 ### Evaluation
 
-1. MCEM could obtain a fair results based on the intialization mentioned before. Because EM Algorithm is sensitive to the initial values of parameters, we choose two fixed initialization later
+* MCEM could obtain a fair results based on the intialization mentioned before. 
 
-2. The MSE of $\beta_2$ and $\sigma_2$ by MCEM are much bigger than other parameters. This may be the result of the difference of the magnitudes.
+* The MSE of $\beta_2$ and $\sigma_2$ by MCEM are much bigger than other parameters. This may be the result of the difference of the magnitudes.
 
 |N| $\beta_1$ |$\beta_2$|$\sigma_1$|$\sigma_2$|$\pi_1$|
 |--------|--------|--------|--------|--------|--------|
