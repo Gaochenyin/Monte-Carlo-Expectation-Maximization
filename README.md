@@ -11,7 +11,7 @@
 
 # Model Notation
 
-In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response $Y_{ij}=0 or 1$,$i=1,\cdots,n$,$j=1,\cdots,T$. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
+In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response $Y_{ij}=0$ or $1$,$i=1,\cdots,n$,$j=1,\cdots,T$. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
 expectation of response variable is
 $$P_{ij}=E(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}+Z_{1,i})$$
 $$P_{ij}=E(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}+Z_{2,i})$$
@@ -31,7 +31,7 @@ where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z
 
 ## Flow Chart
 
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow.png"  width="800" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow_chart.png"  width="800" ></div>
 
 ## Results
 * EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
@@ -56,15 +56,13 @@ where $\delta>0$ is to assure that the denominator is positive. Setting the thre
 | $\sigma_2$ | 10      | 5|9.132040|
 | $\pi_1$ | 0.6    | 0.8| 0.480500|
 
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/beta.png"  width="400" ></div>
-
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/sigma.png" width="400"></div>
-
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/pi.png" width="400"></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/beta.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/sigma.png" width="600"></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/pi.png" width="600"></div>
 
 ### Evaluation
 
-* MCEM could obtain a fair results based on the intialization mentioned before. 
+* We conducted different number of simulations:$100,200,\cdots,1000$ and evaluate the corresponding $MSE$. From the result, we concluded that MCEM could obtain a fair results based on the intialization mentioned before. 
 
 * The MSE of $\beta_2$ and $\sigma_2$ by MCEM are much bigger than other parameters. This may be the result of the difference of the magnitudes.
 
@@ -81,5 +79,5 @@ where $\delta>0$ is to assure that the denominator is positive. Setting the thre
 |900|0.01822611| 0.04475583| 0.06697709| 0.6238291 |0.02465581
 |1000|0.01824120| 0.04517658| 0.06683521| 0.6233873| 0.02449014
 
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="400" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
 
