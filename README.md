@@ -16,7 +16,7 @@
 
 ## Results
 
-$\frac{\hat{\beta_1^{t+1}}}{2}$
+$\epsilon=\frac{\hat{\beta}_1^{t+1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}+\delta}$
 ### Values
 
 1. My convergence is pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
