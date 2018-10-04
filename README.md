@@ -12,13 +12,16 @@
 # Procedures
 ## Flow Chart
 
-## Initialization
+## Results
 
 |Variables      | True Value | Initial Value| Converged Value 
 |------------|------------|------------|------------|
 | $\alpha$      | right-aligned |------------|------------|
 | col 2 is      | centered      |------------|------------|
 | zebra stripes | are neat      | ------------|------------|
+
+
+## ![beta](https://github.com/Gaochenyin/MCEM/blob/master/3.2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/300)
 ## Metropolis-Hasting Step
 由基本的贝叶斯思想可得<a href="https://www.codecogs.com/eqnedit.php?latex=F(Z|\Omega,Y)&space;=&space;F(Z|\Omega)L(\Omega|Y)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F(Z|\Omega,Y)&space;=&space;F(Z|\Omega)L(\Omega|Y)" title="F(Z|\Omega,Y) = F(Z|\Omega)L(\Omega|Y)" /></a>
 ## Gibbs Sampler
