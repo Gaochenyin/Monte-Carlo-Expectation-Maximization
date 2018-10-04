@@ -11,18 +11,19 @@
 
 # Model Notation
 
-In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response $Y_{ij}$=0 or 1,$i=1,\cdots,n$,$j=1,\cdots,T$. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
+In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response $Y_{ij}=0 or 1$,$i=1,\cdots,n$,$j=1,\cdots,T$. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
 expectation of response variable is
 $$P_{ij}=E(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}+Z_{1,i})$$
 $$P_{ij}=E(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}+Z_{2,i})$$
-where **U** is cluster membership, $X_{c,ij}$ and $Z_{c,i}$ (c = 1,2) are fixed and random effects, respectively. The link
+where **U** is cluster membership, $X_{c,ij}$ and $Z_{c,i} (c = 1,2)$ are fixed and random effects, respectively. The link
 function $g^{−1}(x)=\frac{exp(x)}{1+exp(x)}$ is given. In a typical clustering problem, **U** is usually unknown, and hence we
 treat **U**as another random effect.
 
-For random effects, we assume that $Z_{c,i}\sim N(0,\sigma_c^2)$ and $P(U = 1)$=\pi$ (then $\pi_2=1-\pi_1$ ). Then the
+For random effects, we assume that $Z_{c,i}\sim N(0,\sigma_c^2)$ and $P(U = 1)=\pi$ (then $\pi_2=1-\pi_1$ ). Then the
 parameter to be estimated is $\Omega=(\beta_1,\beta_2,\sigma_1,\sigma_2,\pi_1)$. Treating random effects as missing data, one can write
 the complete data likelihood function as
 
+$$L(\Omega|Y_{ij},U_i,Z_{U_i,i})=\prod_{i=1}^n\prod_{c=1}^2(\pi_cf_c(Z_{c,i})\[\prod_{j=1}^Tf_c(Y_{ij}|Z_{c,i})\])^{w_{i,c}}$$
 # Procedures
 
 ## Flow Chart
