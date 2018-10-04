@@ -5,7 +5,7 @@
 
 * This project described a Monte Carlo EM (**MCEM**) method to derive Maximum Likelihood Estimates (**MLE**) of the log-likelihood function. 
 
-* In the E-step, perform K = 500 Gibbs sampling incorporated with a Metropolis-Hastings step, and drop the first 100 as a burn-in procedure.
+* In the E-step, perform *K = 500* Gibbs sampling incorporated with a Metropolis-Hastings step, and drop the first *100* as a burn-in procedure.
 
 * Read article: *[Maximum Likelihood Algorithms for Generalized Linear Mixed Models (McCulloch 1997)](www.jstor.org/stable/2291460)*
 
@@ -16,7 +16,7 @@
 
 |Variables      | True Value | Initial Value| Converged Value 
 |------------|------------|------------|------------|
-| col 3 is      | right-aligned |------------|------------|
+| $\alpha$      | right-aligned |------------|------------|
 | col 2 is      | centered      |------------|------------|
 | zebra stripes | are neat      | ------------|------------|
 ## Metropolis-Hasting Step
