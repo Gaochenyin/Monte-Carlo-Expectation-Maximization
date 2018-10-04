@@ -62,7 +62,7 @@ where $\delta>0$ is to assure that the denominator is positive. Setting the thre
 
 ### Evaluation
 
-* MCEM could obtain a fair results based on the intialization mentioned before. 
+* We conducted different number of simulations:$100,200,\cdots,1000$ and evaluate the corresponding $MSE$. From the result, we concluded that MCEM could obtain a fair results based on the intialization mentioned before. 
 
 * The MSE of $\beta_2$ and $\sigma_2$ by MCEM are much bigger than other parameters. This may be the result of the difference of the magnitudes.
 
