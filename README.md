@@ -22,11 +22,11 @@
 
 
 ##
-<div style="float:left;border:solid 1px 000;margin:3px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/3.2.png"  width="100" ></div>
+<div style="float:left;border:solid 1px 000;margin:3px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/3.2.png"  width="300" ></div>
 
-<div style="float:left;border:solid 1px 000;margin:3px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/3.3.png" width="100"></div>
+<div style="float:left;border:solid 1px 000;margin:3px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/3.3.png" width="300"></div>
 
-<div style="float:left;border:solid 1px 000;margin:3px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/3.4.png" width="100"></div>
+<div style="float:left;border:solid 1px 000;margin:3px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/3.4.png" width="300"></div>
 
 ## Metropolis-Hasting Step
 由基本的贝叶斯思想可得<a href="https://www.codecogs.com/eqnedit.php?latex=F(Z|\Omega,Y)&space;=&space;F(Z|\Omega)L(\Omega|Y)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?F(Z|\Omega,Y)&space;=&space;F(Z|\Omega)L(\Omega|Y)" title="F(Z|\Omega,Y) = F(Z|\Omega)L(\Omega|Y)" /></a>
