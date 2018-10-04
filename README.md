@@ -28,6 +28,7 @@ $$L(\Omega|Y_{ij},U_i,Z_{U_i,i})=\prod_{i=1}^n\prod_{c=1}^2(\pi_cf_c(Z_{c,i})\[\
 where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z_{c,i})=P_{ij}^{Y_ij}(1−P_{ij})^{1−Y_{ij}}$. $ω_{ic}$ is the dummy variable of $U_i$, i.e.
 
 $$w_{ic}=\begin{cases}&1    if subject i belongs to cluster c\\
+
 &0,    otherwise\end{cases}$$
 # Procedures
 
