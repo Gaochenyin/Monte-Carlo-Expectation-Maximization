@@ -1,4 +1,4 @@
- Monte Carlo EM 
+ Monte Carlo Expectation Maximization Algorithm
  ====
 
 # Introduction
@@ -31,7 +31,7 @@ where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z
 
 ## Flow Chart
 
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow.png"  width="400" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow.png"  width="800" ></div>
 
 ## Results
 * EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
@@ -81,5 +81,5 @@ where $\delta>0$ is to assure that the denominator is positive. Setting the thre
 |900|0.01822611| 0.04475583| 0.06697709| 0.6238291 |0.02465581
 |1000|0.01824120| 0.04517658| 0.06683521| 0.6233873| 0.02449014
 
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="400" ></div>
 
