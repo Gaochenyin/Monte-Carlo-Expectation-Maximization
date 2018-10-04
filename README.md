@@ -16,7 +16,7 @@
 
 ## Results
 
-$\epsilon^{(t)}=max{\frac{|\hat{\beta_1^{(t+1)}}-\hat{\beta_1^{t}}|}{\hat{\beta_1^{t}}}$
+$\frac{1}{2}$
 ### Values
 
 1. My convergence is pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
