@@ -16,12 +16,18 @@
 
 ## Results
 
-$\epsilon=\frac{\hat{\beta}_1^{t+1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}+\delta}$
+* For each parameter, we calculate the changing rate of it and let $\epsilon^t$ be as following
+
+$$\epsilon^{t}=max\{\frac{\hat{\beta}_1^{t+1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}+\delta},\frac{\hat{\beta}_2^{t+1}-\hat{\beta}_2^{t}}{\hat{\beta}_2^{t}+\delta},\frac{\hat{\sigma}_1^{t+1}-\hat{\sigma}_1^{t}}{\hat{\sigma}_1^{t}+\delta},\frac{\hat{\sigma}_2^{t+1}-\hat{\sigma}_2^{t}}{\hat{\sigma}_2^{t}+\delta},\frac{\hat{\pi}_1^{t+1}-\hat{\pi}_1^{t}}{\hat{\pi}_1^{t}+\delta}\}$$
+
+where $\delta>0$ is to assure that the denominator is positive. Setting the threshold $\epsilon_0$, if $\epsilon^t<\epsilon_0$ then we will consider the simulation converges.
+
+* In this project, we choose $\delta=10^{-12},\epsilon_0=2.5*10^{-2}$
 ### Values
 
-1. My convergence is pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
+1. Our convergences are pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
 
-2. Besides, my project also contain different simulation with different initial value, which also obtain similar result. However, EM alogorithm is highly rely on **random numbers**, the final evaluation of these results is essential.
+2. Besides, our project also contain different simulation with different initial value, which also obtain similar result. However, EM alogorithm is highly rely on **random numbers**, the final evaluation of these results is essential.
 
 |Variables  | True Value | Initial Value| Converged Value 
 |------------|------------|------------|------------|
