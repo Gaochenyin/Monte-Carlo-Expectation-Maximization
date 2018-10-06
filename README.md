@@ -43,11 +43,17 @@ complete data. The distribution of <a href="https://www.codecogs.com/eqnedit.php
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow_chart.png"  width="800" ></div>
 
-## Iterative Estimation
+## Estimation
 
-The partial derivatives of the parameters and set derivatives to 0, we get the maximum likelihood estimators 
+Partial differentiate the complete log-likelihood of the parameters and set derivatives to 0, we get the maximum likelihood estimators 
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\hat{\pi}_{MLE,1}=\frac{1}{n}\sum_{i=1}^n\mathbb{I}_{\{U_i=1\}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{\pi}_{MLE,1}=\frac{1}{n}\sum_{i=1}^n\mathbb{I}_{\{U_i=1\}}" title="\hat{\pi}_{MLE,1}=\frac{1}{n}\sum_{i=1}^n\mathbb{I}_{\{U_i=1\}}" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{\sigma}_{MLE,c}=\sqrt{\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}Z_{c,i}^2}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}}}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\hat{\sigma}_{MLE,c}=\sqrt{\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}Z_{c,i}^2}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}}}" title="\hat{\sigma}_{MLE,c}=\sqrt{\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}Z_{c,i}^2}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}}}" /></a>
+
+However the MLE of <a href="https://www.codecogs.com/eqnedit.php?latex=\beta_c" target="_blank"><img src="https://latex.codecogs.com/png.latex?\beta_c" title="\beta_c" /></a> is hard to obtain as a close form. We can use Netwon-Raphson algorithm to iteratively approximate it.
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\beta_c^{(t&plus;1)}&space;=\beta^{(t)}_c&plus;\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T(Y_{ij}X_{ij}-\frac{X_{c,ij}e^{(\beta_c^tX_{c,ij}&plus;Z_{c,i})}}{1&plus;e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}}})}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T\frac{X_{c,ij}^2e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}}}{(1&plus;e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}})^2}}" target="_blank"><img src="https://latex.codecogs.com/png.latex?\beta_c^{(t&plus;1)}&space;=\beta^{(t)}_c&plus;\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T(Y_{ij}X_{ij}-\frac{X_{c,ij}e^{(\beta_c^tX_{c,ij}&plus;Z_{c,i})}}{1&plus;e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}}})}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T\frac{X_{c,ij}^2e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}}}{(1&plus;e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}})^2}}" title="\beta_c^{(t+1)} =\beta^{(t)}_c+\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T(Y_{ij}X_{ij}-\frac{X_{c,ij}e^{(\beta_c^tX_{c,ij}+Z_{c,i})}}{1+e^{\beta_c^tX_{c,ij}+Z_{c,i}}})}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T\frac{X_{c,ij}^2e^{\beta_c^tX_{c,ij}+Z_{c,i}}}{(1+e^{\beta_c^tX_{c,ij}+Z_{c,i}})^2}}" /></a>
 
 ## Results
 * EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
