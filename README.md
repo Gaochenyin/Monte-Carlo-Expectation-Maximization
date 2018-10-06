@@ -27,12 +27,18 @@ $$L(\Omega|Y_{ij},U_i,Z_{U_i,i})=\prod_{i=1}^n\prod_{c=1}^2(\pi_cf_c(Z_{c,i})\[\
 
 where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z_{c,i})=P_{ij}^{Y_ij}(1−P_{ij})^{1−Y_{ij}}$. $ω_{ic}$ is the dummy variable of $U_i$
 
+the random effects $U$ and $Z$ are called the [latent varaibles](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm#Description) and $(Y,U,Z)$ is called
+complete data. The distribution of $U$ depends on $\pi_1$ and the distribution of $Z$ depends on $U$, $\sigma_1$ and $\sigma_2$.
+$\mathds{I}$
 # Procedures
 
 ## Flow Chart
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow_chart.png"  width="800" ></div>
 
+## Iterative Estimation
+
+The partial derivatives of the parameters are given by 
 ## Results
 * EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
 * For each parameter, we calculate the changing rate of it and let $\epsilon^t$ be as following
