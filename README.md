@@ -11,7 +11,7 @@
 
 # Model Notation
 
-In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response $Y_{ij}=0$ or $1$,$i=1,\cdots,n$,$j=1,\cdots,T$. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
+In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" title="Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" /></a>. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
 expectation of response variable is
 $$P_{ij}=E(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}+Z_{1,i})$$
 $$P_{ij}=E(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}+Z_{2,i})$$
@@ -29,7 +29,7 @@ where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_ij|Z
 
 the random effects $U$ and $Z$ are called the [latent varaibles](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm#Description) and $(Y,U,Z)$ is called
 complete data. The distribution of $U$ depends on $\pi_1$ and the distribution of $Z$ depends on $U$, $\sigma_1$ and $\sigma_2$.
-$\mathds{I}$
+
 # Procedures
 
 ## Flow Chart
@@ -38,7 +38,10 @@ $\mathds{I}$
 
 ## Iterative Estimation
 
-The partial derivatives of the parameters are given by 
+The partial derivatives of the parameters and set derivatives to 0, we get the maximum likelihood estimators 
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\hat{\pi}_{MLE,1}=\frac{1}{n}\sum_{i=1}^n\mathbb{I}_{\{U_i=1\}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\hat{\pi}_{MLE,1}=\frac{1}{n}\sum_{i=1}^n\mathbb{I}_{\{U_i=1\}}" title="\hat{\pi}_{MLE,1}=\frac{1}{n}\sum_{i=1}^n\mathbb{I}_{\{U_i=1\}}" /></a>
+
 ## Results
 * EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
 * For each parameter, we calculate the changing rate of it and let $\epsilon^t$ be as following
