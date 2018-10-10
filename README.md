@@ -15,9 +15,9 @@ In this project, we consider a clustering problem. Suppose we have observed n ob
 expectation of response variable is
 
 
-<img src="https://latex.codecogs.com/gif.latex?P_{ij}=E(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}&plus;Z_{1,i})" title="P_{ij}=E(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}+Z_{1,i})" /></a>
+<img src="https://latex.codecogs.com/gif.latex?P_{ij}=\mathbb{E}(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}&plus;Z_{1,i})" title="P_{ij}=\mathbb{E}(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}+Z_{1,i})" /></a>
 
-<img src="https://latex.codecogs.com/gif.latex?P_{ij}=E(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}&plus;Z_{2,i})" title="P_{ij}=E(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}+Z_{2,i})" /></a>
+<img src="https://latex.codecogs.com/gif.latex?P_{ij}=\mathbb{E}(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}&plus;Z_{2,i})" title="P_{ij}=E(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}+Z_{2,i})" /></a>
 
 
 where<img src="https://latex.codecogs.com/gif.latex?\inline&space;U" title="U" /></a> is cluster membership, <img src="https://latex.codecogs.com/gif.latex?\inline&space;X_{c,ij}" title="X_{c,ij}" /></a> and <img src="https://latex.codecogs.com/gif.latex?\inline&space;Z_{c,i}~(c&space;=&space;1,2)" title="Z_{c,i}~(c = 1,2)" /></a> are fixed and random effects, respectively. The link
@@ -59,7 +59,7 @@ However the MLE of <img src="https://latex.codecogs.com/png.latex?\beta_c" title
 
 Since it is hard to calculate the prior distribution of <img src="https://latex.codecogs.com/png.latex?Y_i" title="Y_i" /></a> , it is difficult to sample directly from the multivariate distribution <img src="https://latex.codecogs.com/png.latex?f(U_i,Z_i|Y_{ij},\Omega)" title="f(U_i,Z_i|Y_{ij},\Omega)" /></a>. We can use Gibbs Sampling, a Markov chain Monte Carlo (MCMC) algorithm to obtain a sequence of observations which are approximated from the multivariate distribution.
 
-<img src="https://latex.codecogs.com/png.latex?\begin{aligned}f(U_i|Z_{U_i},\mathbf{Y_i})&space;&=\frac{f(U_i,Z_i,\mathbf{Y_i}|\Omega)}{f(Z_{i},\mathbf{Y_i}|\Omega)}\\&space;&=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\sum\limits_{c=1}^2\pi_cf_c(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{c}(Y_{ij}|Z_{i},\Omega)}&space;\end{aligned}" title="\begin{aligned}f(U_i|Z_{U_i},\mathbf{Y_i}) &=\frac{f(U_i,Z_i,\mathbf{Y_i}|\Omega)}{f(Z_{i},\mathbf{Y_i}|\Omega)}\\ &=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\sum\limits_{c=1}^2\pi_cf_c(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{c}(Y_{ij}|Z_{i},\Omega)} \end{aligned}" /></a>
+<img src="https://latex.codecogs.com/png.latex?\begin{aligned}f(U_i|Z_{U_i},\mathbf{Y}_i)&space;&=\frac{f(U_i,Z_i,\mathbf{Y}_i|\Omega)}{f(Z_{i},\mathbf{Y}_i|\Omega)}\\&space;&=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\sum\limits_{c=1}^2\pi_cf_c(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{c}(Y_{ij}|Z_{i},\Omega)}&space;\end{aligned}" title="\begin{aligned}f(U_i|Z_{U_i},\mathbf{Y}_i) &=\frac{f(U_i,Z_i,\mathbf{Y}_i|\Omega)}{f(Z_{i},\mathbf{Y}_i|\Omega)}\\ &=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\sum\limits_{c=1}^2\pi_cf_c(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{c}(Y_{ij}|Z_{i},\Omega)} \end{aligned}" /></a>
 
 <img src="https://latex.codecogs.com/png.latex?\begin{aligned}f(Z_i|U_{i},\mathbf{Y}_i)&=\frac{f(U_i,Z_i,\mathbf{Y}_i|\Omega)}{f(Z_{i},\mathbf{Y}_i|\Omega)}\\&=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\int_{\mathbb{R}}\pi_{U_i}f_{U_i}(z|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|z,\Omega)dz}\end{aligned}" title="\begin{aligned}f(Z_i|U_{i},\mathbf{Y}_i)&=\frac{f(U_i,Z_i,\mathbf{Y}_i|\Omega)}{f(Z_{i},\mathbf{Y}_i|\Omega)}\\&=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\int_{\mathbb{R}}\pi_{U_i}f_{U_i}(z|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|z,\Omega)dz}\end{aligned}" /></a>
 
