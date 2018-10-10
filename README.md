@@ -37,6 +37,11 @@ where <img src="https://latex.codecogs.com/gif.latex?f_c(Z_{c,i})" title="f_c(Z_
 the random effects <img src="https://latex.codecogs.com/gif.latex?U" title="U" /></a> and <img src="https://latex.codecogs.com/gif.latex?Z" title="Z" /></a> are called the [latent varaibles](https://en.wikipedia.org/wiki/Expectation%E2%80%93maximization_algorithm#Description) and <img src="https://latex.codecogs.com/gif.latex?(Y,U,Z)" title="(Y,U,Z)" /></a> is called
 complete data. The distribution of <img src="https://latex.codecogs.com/gif.latex?U" title="U" /></a> depends on <img src="https://latex.codecogs.com/gif.latex?\pi_1" title="\pi_1" /></a> and the distribution of <img src="https://latex.codecogs.com/gif.latex?Z" title="Z" /></a> depends on <img src="https://latex.codecogs.com/gif.latex?U" title="U" /></a>, <img src="https://latex.codecogs.com/gif.latex?\sigma_1" title="\sigma_1" /></a> and <img src="https://latex.codecogs.com/gif.latex?\sigma_2" title="\sigma_2" /></a>.
 
+# Simluation Setup
+
+Generate 100 simulations. In each simulation, set <img src="https://latex.codecogs.com/gif.latex?n&space;=&space;100" title="n = 100" /></a> and <img src="https://latex.codecogs.com/gif.latex?T&space;=&space;10" title="T = 10" /></a>. The true values of parameter are:
+<img src="https://latex.codecogs.com/gif.latex?\beta_1&space;=&space;1,\beta_2&space;=&space;5,\pi_1&space;=&space;0.6,\sigma_1&space;=&space;2" title="\beta_1 = 1,\beta_2 = 5,\pi_1 = 0.6,\sigma_1 = 2" /></a> and <img src="https://latex.codecogs.com/gif.latex?\sigma_2&space;=&space;10." title="\sigma_2 = 10." /></a>
+
 # Procedures
 
 ## Flow Chart
