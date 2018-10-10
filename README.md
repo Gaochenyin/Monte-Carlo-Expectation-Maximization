@@ -76,7 +76,7 @@ we choose marginal distribution of <img src="https://latex.codecogs.com/gif.late
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\frac{f_{Z|Y}(Z^*|Y,U,\Omega)h_Z(Z)}{f_{Z|Y}(Z|Y,U,\Omega)h_Z(Z^*)}\\&space;&=\frac{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z^*,U,\Omega)f_Z(Z^*|U,\Omega)f_Z(Z|U,\Omega)}{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z,U,\Omega)f_Z(Z|U,\Omega)f_Z(Z^*|U,\Omega)}\\&space;&=\frac{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z^*,U,\Omega)}{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z,U,\Omega)}\\&space;&=\frac{\prod_{j=1}^{10}&space;\frac{\exp\{Y_{ij}(\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}&plus;Z^*)\}}{1&plus;\exp\{\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}&plus;Z^*\}}}{\prod_{j=1}^{10}&space;\frac{\exp\{Y_{ij}(\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}&plus;Z)\}}{1&plus;\exp\{\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}&plus;Z\}}}&space;\end{aligned}" title="\begin{aligned} &\frac{f_{Z|Y}(Z^*|Y,U,\Omega)h_Z(Z)}{f_{Z|Y}(Z|Y,U,\Omega)h_Z(Z^*)}\\ &=\frac{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z^*,U,\Omega)f_Z(Z^*|U,\Omega)f_Z(Z|U,\Omega)}{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z,U,\Omega)f_Z(Z|U,\Omega)f_Z(Z^*|U,\Omega)}\\ &=\frac{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z^*,U,\Omega)}{\prod_{j=1}^{10}f_{Y_{ij}|Z}(Y_{ij}|Z,U,\Omega)}\\ &=\frac{\prod_{j=1}^{10} \frac{\exp\{Y_{ij}(\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}+Z^*)\}}{1+\exp\{\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}+Z^*\}}}{\prod_{j=1}^{10} \frac{\exp\{Y_{ij}(\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}+Z)\}}{1+\exp\{\beta_1^{U_i}\beta_2^{1-U_i}X_{ij}+Z\}}} \end{aligned}" /></a>
 
-Then we use the use Monte Carlo Integrating to approximate the expectation of the log-likelihood. 
+Then we use the Monte Carlo Integrating to approximate the expectation of the log-likelihood. 
 
 ## Estimation (Netwon-Raphson algorithm)
 
