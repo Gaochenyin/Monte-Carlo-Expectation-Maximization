@@ -49,7 +49,7 @@ Generate 100 simulations. In each simulation, set <img src="https://latex.codeco
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow_chart.png"  width="800" ></div>
 
 
-## Complete log-liklihood 
+## Complete Observed Data 
 
 We estimated the augmented posterior liklihood and computed the expected log-augmented posterior at each iteration.
 
