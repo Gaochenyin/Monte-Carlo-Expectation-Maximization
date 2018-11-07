@@ -115,7 +115,8 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 * Our convergences are pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
 
-* Besides, our project also contain different simulation with different initial value, which also obtain similar result. However, EM alogorithm is highly rely on **random numbers**, the final evaluation of these results is essential.
+* We monitor the convergence of the alogorithm by plotting <img src="https://latex.codecogs.com/gif.latex?\Omega^*" title="\Omega^*" /></a> vs. iteration number i and the plot reveals **random flucuation** about the line <img src="https://latex.codecogs.com/gif.latex?\Omega&space;=&space;\Omega^*" title="\Omega = \Omega^*" /></a>. So, we may continue with a large value of m to decrease the system variability. 
+
 
 |Variables  | True Value | Initial Value| Converged Value 
 |------------|------------|------------|------------|
@@ -128,6 +129,7 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/beta.png"  width="600" ></div>
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/sigma.png" width="600"></div>
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/pi.png" width="600"></div>
+
 
 ### Evaluation
 
