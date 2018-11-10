@@ -9,6 +9,8 @@
 
 * Read article: *[Maximum Likelihood Algorithms for Generalized Linear Mixed Models (McCulloch 1997)](www.jstor.org/stable/2291460)*
 
+* See *Project Summary* [here]()
+
 # Model Notation
 
 In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response <img src="https://latex.codecogs.com/gif.latex?\inline&space;Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" title="Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" /></a>. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
@@ -49,16 +51,20 @@ Generate 100 simulations. In each simulation, set <img src="https://latex.codeco
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/flow_chart.png"  width="800" ></div>
 
 
-## Complete log-liklihood 
+## Complete Observed Data 
 
-We estimated the augmented posterior  liklihood and computed the expected log-augmented posterior at each iteration.
+We estimated the augmented posterior liklihood and computed the expected log-augmented posterior at each iteration.
 
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&L(\Omega|Y,U,Z)\\&space;&=&space;\log&space;\prod_{i=1}^{100}&space;(\pi_1&space;\frac{e^{-Z_{1,i}^2/2\sigma_1^2}}{\sqrt{2\pi\sigma_1^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_1X_{ij}&plus;Z_{1,i})\}}{1&plus;\exp\{(\beta_1X_{ij}&plus;Z_{1,i})\}}])^{U_i}&space;((1-\pi_1)&space;\frac{e^{-Z_{2,i}^2/2\sigma_2^2}}{\sqrt{2\pi\sigma_2^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_2X_{ij}&plus;Z_{2,i})\}}{1&plus;\exp\{(\beta_2X_{ij}&plus;Z_{2,i})\}}])^{1-U_i}\\&space;&=\sum_{i=1}^{100}(U_i&space;\log\pi_1&plus;(1-U_i)\log(1-\pi_1))&space;&plus;&space;\sum_{i=1}^{100}(U_i(\frac{-1}{2}\log(2\pi\sigma_1^2)-\frac{Z_{1,i}^2}{2\sigma_1^2})&plus;(1-U_i)(\frac{-1}{2}\log(2\pi\sigma_2^2)-\frac{Z_{2,i}^2}{2\sigma_2^2}))\\&space;&&plus;\sum_{i=1}^{100}\sum_{j=1}^{10}U_i(Y_{ij}(\beta_1X_{ij}&plus;Z_{1,i})-\log(1&plus;\exp\{\beta_1X_{ij}&plus;Z_{1,i}\}))&plus;&space;(1-U_i)(Y_{ij}(\beta_2X_{ij}&plus;Z_{2,i})-\log(1&plus;\exp\{\beta_2X_{ij}&plus;Z_{2,i}\}))\\&space;&=Q(\pi_1)&plus;Q(\sigma_1,\sigma_2)&plus;Q(\beta_1,\beta_2)&space;\end{aligned}" title="\begin{aligned} &L(\Omega|Y,U,Z)\\ &= \log \prod_{i=1}^{100} (\pi_1 \frac{e^{-Z_{1,i}^2/2\sigma_1^2}}{\sqrt{2\pi\sigma_1^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_1X_{ij}+Z_{1,i})\}}{1+\exp\{(\beta_1X_{ij}+Z_{1,i})\}}])^{U_i} ((1-\pi_1) \frac{e^{-Z_{2,i}^2/2\sigma_2^2}}{\sqrt{2\pi\sigma_2^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_2X_{ij}+Z_{2,i})\}}{1+\exp\{(\beta_2X_{ij}+Z_{2,i})\}}])^{1-U_i}\\ &=\sum_{i=1}^{100}(U_i \log\pi_1+(1-U_i)\log(1-\pi_1)) + \sum_{i=1}^{100}(U_i(\frac{-1}{2}\log(2\pi\sigma_1^2)-\frac{Z_{1,i}^2}{2\sigma_1^2})+(1-U_i)(\frac{-1}{2}\log(2\pi\sigma_2^2)-\frac{Z_{2,i}^2}{2\sigma_2^2}))\\ &+\sum_{i=1}^{100}\sum_{j=1}^{10}U_i(Y_{ij}(\beta_1X_{ij}+Z_{1,i})-\log(1+\exp\{\beta_1X_{ij}+Z_{1,i}\}))+ (1-U_i)(Y_{ij}(\beta_2X_{ij}+Z_{2,i})-\log(1+\exp\{\beta_2X_{ij}+Z_{2,i}\}))\\ &=Q(\pi_1)+Q(\sigma_1,\sigma_2)+Q(\beta_1,\beta_2) \end{aligned}" /></a>
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&Q(\Omega,\Omega^*)=\int&space;\int_{(U,Z)}&space;\log(\Omega|Y,U,Z)f(U,Z|Y,\Omega^*)dUdZ\\&space;&=&space;\int&space;\int_{(U,Z)}&space;\log&space;\prod_{i=1}^{100}&space;(\pi_1&space;\frac{e^{-Z_{1,i}^2/2\sigma_1^{2}}}{\sqrt{2\pi\sigma_1^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_1X_{ij}&plus;Z_{1,i})\}}{1&plus;\exp\{(\beta_1X_{ij}&plus;Z_{1,i})\}}])^{U_i}&space;\\&space;&((1-\pi_1)&space;\frac{e^{-Z_{2,i}^2/2\sigma_2^2}}{\sqrt{2\pi\sigma_2^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_2X_{ij}&plus;Z_{2,i})\}}{1&plus;\exp\{(\beta_2X_{ij}&plus;Z_{2,i})\}}])^{1-U_i}f(U,Z|Y,\Omega^*)dUdZ\\&space;&=\int&space;\int_{(U,Z)}&space;[\sum_{i=1}^{100}(U_i&space;\log\pi_1&plus;(1-U_i)\log(1-\pi_1))&space;\\&space;&&plus;&space;\sum_{i=1}^{100}(U_i(\frac{-1}{2}\log(2\pi\sigma_1^2)-\frac{Z_{1,i}^2}{2\sigma_1^2})&plus;(1-U_i)(\frac{-1}{2}\log(2\pi\sigma_2^2)-\frac{Z_{2,i}^2}{2\sigma_2^2}))\\&space;&&plus;\sum_{i=1}^{100}\sum_{j=1}^{10}U_i(Y_{ij}(\beta_1X_{ij}&plus;Z_{1,i})-\log(1&plus;\exp\{\beta_1X_{ij}&plus;Z_{1,i}\}))&plus;&space;(1-U_i)(Y_{ij}(\beta_2X_{ij}&plus;Z_{2,i})-\log(1&plus;\exp\{\beta_2X_{ij}&plus;Z_{2,i}\}))&space;]f(U,Z|Y,\Omega^*)dUdZ&space;\\&space;\end{aligned}" title="\begin{aligned} &Q(\Omega,\Omega^*)=\int \int_{(U,Z)} \log(\Omega|Y,U,Z)f(U,Z|Y,\Omega^*)dUdZ\\ &= \int \int_{(U,Z)} \log \prod_{i=1}^{100} (\pi_1 \frac{e^{-Z_{1,i}^2/2\sigma_1^{2}}}{\sqrt{2\pi\sigma_1^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_1X_{ij}+Z_{1,i})\}}{1+\exp\{(\beta_1X_{ij}+Z_{1,i})\}}])^{U_i} \\ &((1-\pi_1) \frac{e^{-Z_{2,i}^2/2\sigma_2^2}}{\sqrt{2\pi\sigma_2^2}}[\prod_{j=1}^{10}\frac{\exp\{Y_{ij}(\beta_2X_{ij}+Z_{2,i})\}}{1+\exp\{(\beta_2X_{ij}+Z_{2,i})\}}])^{1-U_i}f(U,Z|Y,\Omega^*)dUdZ\\ &=\int \int_{(U,Z)} [\sum_{i=1}^{100}(U_i \log\pi_1+(1-U_i)\log(1-\pi_1)) \\ &+ \sum_{i=1}^{100}(U_i(\frac{-1}{2}\log(2\pi\sigma_1^2)-\frac{Z_{1,i}^2}{2\sigma_1^2})+(1-U_i)(\frac{-1}{2}\log(2\pi\sigma_2^2)-\frac{Z_{2,i}^2}{2\sigma_2^2}))\\ &+\sum_{i=1}^{100}\sum_{j=1}^{10}U_i(Y_{ij}(\beta_1X_{ij}+Z_{1,i})-\log(1+\exp\{\beta_1X_{ij}+Z_{1,i}\}))+ (1-U_i)(Y_{ij}(\beta_2X_{ij}+Z_{2,i})-\log(1+\exp\{\beta_2X_{ij}+Z_{2,i}\})) ]f(U,Z|Y,\Omega^*)dUdZ \\ \end{aligned}" /></a>
 
+Given the current guess to the posterior mode <img src="https://latex.codecogs.com/gif.latex?\theta^*" title="\theta^*" /></a>, we supply the method  of  Monte Carlo to calculate
+the <img src="https://latex.codecogs.com/gif.latex?Q(\Omega,\Omega^*)" title="Q(\Omega,\Omega^*)" /></a> function. In particular, the Monte Carlo  E-step is given as
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;&a.~Draw~(Z_1,U_1),(Z_2,U_2),\cdots,(Z_m,U_m)&space;\overset{i.i.d}{\sim}f(Z,U|Y,\Omega^*)\\&space;&b.~Let~\hat{Q}_{i&plus;1}(\Omega,\Omega^*)=\frac{1}{m}\sum_{j=1}^m\log~p(\Omega|Z,U,Y)&space;\end{aligned}" title="\begin{aligned} &a.~Draw~(Z_1,U_1),(Z_2,U_2),\cdots,(Z_m,U_m) \overset{i.i.d}{\sim}f(Z,U|Y,\Omega^*)\\ &b.~Let~\hat{Q}_{i+1}(\Omega,\Omega^*)=\frac{1}{m}\sum_{j=1}^m\log~p(\Omega|Z,U,Y) \end{aligned}" /></a>
 
 ## Sampling (Markov chain Monte Carlo)
 
-Since it is hard to calculate the prior distribution of <img src="https://latex.codecogs.com/png.latex?Y_i" title="Y_i" /></a> , it is difficult to sample directly from the multivariate posterior distribution <img src="https://latex.codecogs.com/png.latex?f(U_i,Z_i|Y_{ij},\Omega)" title="f(U_i,Z_i|Y_{ij},\Omega)" /></a>. We can use Gibbs Sampling, a Markov chain Monte Carlo (MCMC) algorithm to obtain a sequence of observations which are approximated from the multivariate distribution.
+Since it is difficult to sample directly from the multivariate posterior distribution <img src="https://latex.codecogs.com/png.latex?f(U_i,Z_i|Y_{ij},\Omega)" title="f(U_i,Z_i|Y_{ij},\Omega)" /></a>, We can use Gibbs Sampling, a Markov chain Monte Carlo (MCMC) algorithm to obtain a sequence of observations which are approximated from the multivariate distribution.
 
 <img src="https://latex.codecogs.com/png.latex?\begin{aligned}f(U_i|Z_{U_i},\mathbf{Y}_i)&space;&=\frac{f(U_i,Z_i,\mathbf{Y}_i|\Omega)}{f(Z_{i},\mathbf{Y}_i|\Omega)}\\&space;&=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\sum\limits_{c=1}^2\pi_cf_c(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{c}(Y_{ij}|Z_{i},\Omega)}&space;\end{aligned}" title="\begin{aligned}f(U_i|Z_{U_i},\mathbf{Y}_i) &=\frac{f(U_i,Z_i,\mathbf{Y}_i|\Omega)}{f(Z_{i},\mathbf{Y}_i|\Omega)}\\ &=\frac{\pi_{U_i}f_{U_i}(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{U_i}(Y_{ij}|Z_{i},\Omega)}{\sum\limits_{c=1}^2\pi_cf_c(Z_{i}|\sigma_1,\sigma_2)\prod\limits_{j=1}^Tf_{c}(Y_{ij}|Z_{i},\Omega)} \end{aligned}" /></a>
 
@@ -111,7 +117,8 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 * Our convergences are pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
 
-* Besides, our project also contain different simulation with different initial value, which also obtain similar result. However, EM alogorithm is highly rely on **random numbers**, the final evaluation of these results is essential.
+* We monitor the convergence of the alogorithm by plotting <img src="https://latex.codecogs.com/gif.latex?\Omega^*" title="\Omega^*" /></a> vs. iteration number i and the plot reveals **random flucuation** about the line <img src="https://latex.codecogs.com/gif.latex?\Omega&space;=&space;\Omega^*" title="\Omega = \Omega^*" /></a>. So, we may continue with a large value of m to decrease the system variability. 
+
 
 |Variables  | True Value | Initial Value| Converged Value 
 |------------|------------|------------|------------|
@@ -124,6 +131,7 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/beta.png"  width="600" ></div>
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/sigma.png" width="600"></div>
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/pi.png" width="600"></div>
+
 
 ### Evaluation
 
