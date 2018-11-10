@@ -9,6 +9,8 @@
 
 * Read article: *[Maximum Likelihood Algorithms for Generalized Linear Mixed Models (McCulloch 1997)](www.jstor.org/stable/2291460)*
 
+* See *Project Summary* [here]()
+
 # Model Notation
 
 In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response <img src="https://latex.codecogs.com/gif.latex?\inline&space;Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" title="Y_{ij}=0~or~1,i=1,\cdots,n,j=1,\cdots,T" /></a>. Here n is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional
