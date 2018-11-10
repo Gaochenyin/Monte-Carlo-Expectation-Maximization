@@ -1,0 +1,187 @@
+\documentclass[5p,sans,12pt,fleqn]{article}
+\usepackage{times}
+\usepackage{caption}
+\DeclareCaptionFont{cheny}{\heiti\fontsize{10}{12}\selectfont}
+\captionsetup{font = cheny}
+\usepackage{mathptmx}
+\usepackage{amsthm}
+\hoffset=-2cm \setlength{\topmargin}{-1.0in}
+\setlength{\textheight}{9.5in} \setlength{\textwidth}{6.5in}
+\linespread{1.6}
+\usepackage{CJK}
+\usepackage{cite}
+\usepackage{lastpage}
+\usepackage{colortbl}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\definecolor{MSBlue}{rgb}{.204,.353,.541}
+\definecolor{MSLightBlue}{rgb}{.31,.506,.741}
+\definecolor{YinBlue}{rgb}{ .184,  .459,  .71}
+\definecolor{tabcolor}{rgb}{ .357,  .608,  .835}
+\usepackage[CJKbookmarks, colorlinks, bookmarksnumbered=true,pdfstartview=FitH,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage[english]{babel}
+\usepackage[noend]{algpseudocode}
+\usepackage{graphicx}
+\usepackage{ctex}
+\usepackage{lipsum} % delete this as necessary
+\usepackage{fancyhdr}
+\usepackage{pdfpages}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\usepackage{lettrine}
+\usepackage{algorithm}
+\usepackage{threeparttable}
+\usepackage{supertabular}
+\usepackage{booktabs}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{multirow}
+%\floatname{algorithm}{算法}
+%\renewcommand{\algorithmicrequire}{\textbf{输入:}}
+%\renewcommand{\algorithmicensure}{\textbf{输出:}}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{color}
+\definecolor{shadecolor}{rgb}{ .929,  .929,  .929}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\lstset{language=R}
+\usepackage{natbib}
+\citestyle{nature}
+\setcitestyle{square}
+% Set formats for each heading level
+\titleformat*{\section}{\centering\Large\bfseries\sffamily\color{MSBlue}}
+\titleformat*{\subsection}{\large\bfseries\sffamily\color{MSLightBlue}}
+\titleformat*{\subsubsection}{\itshape\color{YinBlue}}
+\definecolor{CPPLight}  {HTML} {686868}
+\definecolor{CPPSteel}  {HTML} {888888}
+\definecolor{CPPDark}   {HTML} {262626}
+\definecolor{CPPBlue}   {HTML} {4172A3}
+\definecolor{CPPGreen}  {HTML} {487818}
+\definecolor{CPPBrown}  {HTML} {A07040}
+\definecolor{CPPRed}    {HTML} {AD4D3A}
+\definecolor{CPPViolet} {HTML} {7040A0}
+\definecolor{CPPGray}  {HTML} {B8B8B8}
+\lstset{
+    columns=fixed,
+    numbers=none,                                        % 在左侧显示行号
+    frame=none,                                          % 不显示背景边框
+    backgroundcolor=\color[RGB]{245,245,244},            % 设定背景颜色
+    keywordstyle=\color[RGB]{40,40,255},                 % 设定关键字颜色
+    numberstyle=\footnotesize\color{darkgray},           % 设定行号格式
+    commentstyle=\it\color[RGB]{0,96,96},                % 设置代码注释的格式
+    stringstyle=\rmfamily\slshape\color[RGB]{128,0,0},   % 设置字符串格式
+    showstringspaces=false,                              % 不显示字符串中的空格
+    language=R,                                          % 设置语言
+    breakatwhitespace=true,
+    keepspaces=true,
+    stepnumber=2,
+    breaklines=true,
+    morekeywords={alignas,continute,friend,register,true,alignof,decltype,goto,
+    reinterpret_cast,try,asm,defult,if,return,typedef,auto,delete,inline,short,
+    typeid,bool,do,int,signed,typename,break,double,long,sizeof,union,case,
+    dynamic_cast,mutable,static,unsigned,catch,else,namespace,static_assert,using,
+    char,enum,new,static_cast,virtual,char16_t,char32_t,explict,noexcept,struct,
+    void,export,nullptr,switch,volatile,class,extern,operator,template,wchar_t,
+    const,false,private,this,while,constexpr,float,protected,thread_local,
+    const_cast,for,public,throw,std},
+    emph={map,set,multimap,multiset,unordered_map,unordered_set,
+    unordered_multiset,unordered_multimap,vector,string,list,deque,
+    array,stack,forwared_list,iostream,memory,shared_ptr,unique_ptr,
+    random,bitset,ostream,istream,cout,cin,endl,move,default_random_engine,
+    uniform_int_distribution,iterator,algorithm,functional,bing,numeric,},
+    emphstyle=\color{CPPViolet},
+    }
+\newcounter{exhibits}
+\DeclareRobustCommand{\invisiblesection}[2]{%
+\refstepcounter{exhibits}
+\refstepcounter{section}%
+\sectionmark{#1}
+\addcontentsline{toc}{section}{\protect\numberline{}#1#2}
+\rhead{\textbf{#2}}
+\lhead{\textbf{#1}}
+%\rfoot{\textbf{2}}
+%\lfoot{\textbf{2}}
+\pagestyle{fancy} % for the exhibits.
+\fancyfoot[LE,RO]{\bfseries \thepage~of~\pageref{LastPage}}
+\fancyfoot[CO,CE]{}
+\fancyfoot[LO,RE]{\bfseries My Document}
+}
+
+
+
+\newcommand{\exName}[3]{#1~#2~#3}
+%\def\thesection{~\Roman{section}}
+
+\pagestyle{fancy}
+\renewcommand{\sectionmark}[1]{\markright{\thesection\ #1}}
+\fancypagestyle{plain}{%
+\fancyhead{} % get rid of headers
+\renewcommand{\headrulewidth}{0pt} % and the line
+}
+
+
+%\renewcommand\figurename{图}
+%\renewcommand\tablename{表}
+\usepackage{times}
+\pagestyle{empty}
+\usepackage{titletoc}
+\titlecontents{section}[0pt]{\addvspace{2pt}\filright}
+              {\contentspush{\thecontentslabel\ }}
+              {}{\titlerule*[8pt]{.}\contentspage}
+
+\newcommand{\sectionlabel}{~\makebox[3.5em][l]{\Roman{section}.}}
+\newtheorem{myDef}{Definition}
+\usepackage{amsmath}
+\usepackage{extarrows}
+\setlength{\parindent}{0pt}
+\title{\huge{Computational Statistics\\
+\large{Generalized Linear Mixed Model}}}
+\author{Chenyin Gao\\[2pt]
+\normalsize Dept. Statistics, Sun Yat-sen University \\[2pt]}
+\date{}  % 这一行用来去掉默认的日期显示
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Progect Summary}
+\subsection{Model Notation}
+
+In this project, we consider a clustering problem. Suppose we have observed n observations, each observation is a binary process, i.e. the response $Y_{ij} = 0$ or $1$, $i = 1,\cdots,n, j = 1,\cdots,T$. Here $n$ is the number of subjects and T is the length of observation. In general, T might vary across subjects, time points may also be different. In this project, however, we simply assume that all subjects have common time length and time points. We also assume that these subjects belong to two clusters. For each cluster, the conditional expectation of response variable is:
+\begin{equation}
+\begin{aligned}
+P_{ij}=\mathbb{E}(Y_{ij}|U_i=1,X_{1,ij},Z_{1,i})=g^{-1}(\beta_1X_{1,ij}+Z_{1,i})\\
+P_{ij}=\mathbb{E}(Y_{ij}|U_i=2,X_{2,ij},Z_{2,i})=g^{-1}(\beta_2X_{2,ij}+Z_{2,i})
+\end{aligned}
+\end{equation}
+
+where $U$ is cluster membership, $X_{c,ij}$ and $Z_c,i(c = 1,2)$ are fixed and random effects, respectively. The link function $g^{-1}(x) =\frac{\exp(x)}{1+\exp(x)}$ is given. In a typical clustering problem, $U$ is usually unknown, and hence we treat $U$ as another random effect.
+
+For random effects, we assume that $Z_{c,i}\sim N(0,\sigma_c^2)$ and $\mathbb{P}(U = 1)=\pi_1$ (then $\pi_2=1-\pi_1$). Then the parameter to be estimated is $\Omega=\{\beta_1,\beta_2,\sigma_1,\sigma_2,\pi_1\}$. Treating random effects as missing data, one can write the complete data likelihood function as
+
+\begin{equation}
+L(\Omega|Y_{ij},U_i,Z_{U_i,i})=\prod_{i=1}^n\prod_{c=1}^2
+\{\pi_cf_c(Z_{c,i})[\prod_{j=1}^T f_c(Y_{ij}|Z_{c,i})]\}^{w_{ic}}
+\end{equation}
+
+where $f_c(Z_{c,i})$ is the density function of Normal distribution, $f_c(Y_{ij}|Z_{c,i})=\mathbb{P}^{Y_{ij}}(1-\mathbb{P}_{ij})^{1-Y_{ij}}$.
+$w_{ic}$ is the dummy variable of $U_i$ , i.e.
+
+\[w_{ic}=
+\left\{
+\begin{array}
+ {r@{\quad,\quad}l}
+ 1 & if~subject~$i$ ~belongs ~to~ cluster~ c \\
+ 0 & otherwise
+\end{array}
+\right.
+\]
+
+\subsection{Simulation Setup and Requirement}
+Generate 100 simulations. In each simulation, set $n$ = 100 and $T$ = 10. The true values of parameter are:$\beta_1=1,\beta_2=1,\pi_1=0.6,\sigma_1=2$ and $\sigma_2=10$
+
+
+Use N(0,1) to generate the fixed effect X, and use them for all 100 simulations and use MCEM to evaluate the loglikelihood function. In the E-step, perform K = 500 Gibbs sampling incorporated with a Metropolis-Hastings step, and drop the first 100 as a
+burn-in procedure.
+
+\end{document}
