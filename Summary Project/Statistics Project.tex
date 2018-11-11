@@ -37,6 +37,7 @@
 \usepackage{algpseudocode}
 \usepackage{amsmath}
 \usepackage{multirow}
+\usepackage{algpseudocode}
 %\floatname{algorithm}{算法}
 %\renewcommand{\algorithmicrequire}{\textbf{输入:}}
 %\renewcommand{\algorithmicensure}{\textbf{输出:}}
@@ -125,7 +126,9 @@
 %\renewcommand\figurename{图}
 %\renewcommand\tablename{表}
 \usepackage{times}
-\pagestyle{empty}
+\pagestyle{fancy}
+\rhead{}
+\renewcommand{\headrulewidth}{0pt}
 \usepackage{titletoc}
 \titlecontents{section}[0pt]{\addvspace{2pt}\filright}
               {\contentspush{\thecontentslabel\ }}
@@ -178,10 +181,231 @@ $w_{ic}$ is the dummy variable of $U_i$ , i.e.
 \]
 
 \subsection{Simulation Setup and Requirement}
-Generate 100 simulations. In each simulation, set $n$ = 100 and $T$ = 10. The true values of parameter are:$\beta_1=1,\beta_2=1,\pi_1=0.6,\sigma_1=2$ and $\sigma_2=10$
+Generate 100 simulations. In each simulation, set $n$ = 100 and $T$ = 10. The true values of parameter are: $\beta_1=1,\beta_2=1,\pi_1=0.6,\sigma_1=2$ and $\sigma_2=10$
 
 
 Use N(0,1) to generate the fixed effect X, and use them for all 100 simulations and use MCEM to evaluate the loglikelihood function. In the E-step, perform K = 500 Gibbs sampling incorporated with a Metropolis-Hastings step, and drop the first 100 as a
 burn-in procedure.
+
+\section{Generalized Linear Mixed Model(GLMM)}
+Given the simulation parameters: $n=100$,$T=10$,$\beta_1=\beta_2=1$,$\pi_1= 0.6,$ $\sigma_1 = 2$,$\sigma_2 = 10$, we could obtain,
+
+Observed variables
+$$
+\textbf{Y}=\left[\begin{matrix}
+ Y_{11}& Y_{12}&\cdots Y_{1T}\\
+ Y_{21}& Y_{22}&\cdots Y_{2T}\\
+ \vdots&\vdots&\ddots&\vdots\\
+ Y_{n1}& Y_{n2}&\cdots Y_{nT})\end{matrix}
+\right]=\left[\begin{matrix}
+\textbf{Y}_1\\
+\textbf{Y}_2\\
+\vdots\\
+\textbf{Y}_n\end{matrix}
+\right]
+$$
+
+Additional unobserved or unobservable variables
+$$
+\textbf{U}=\left[\begin{matrix}
+\textbf{U}_1\\
+\textbf{U}_2\\
+\vdots\\
+\textbf{U}_n\end{matrix}
+\right],
+\textbf{Z}=\left[\begin{matrix}
+\textbf{Z}_{U_1,1}\\
+\textbf{Z}_{U_2,2}\\
+\vdots\\
+\textbf{Z}_{U_n,n}\end{matrix}
+\right]
+$$
+
+Explanatory variables(fixed effect)
+$$
+X=\left|\begin{matrix}
+ X_{U_1,11}&X_{U_1,12}&\cdots&X_{U_1,1T}\\
+ X_{U_2,21}&X_{U_2,22}&\cdots&X_{U_2,2T}\\
+ \vdots & \vdots &\ddots & \vdots \\
+ X_{U_n,n1}&X_{U_n,n2}&\cdots&X_{U_n,nT}
+ \end{matrix}
+\right|
+$$
+
+\subsection{Complete Log-Likelihood}
+Given the necesssary parameters for each component of $\Omega$, we could write the augmented logged liklihood as
+\begin{equation*}
+\small
+\begin{aligned}
+l(\Omega|\textbf{Y},\textbf{U},\textbf{Z})&=\ln L(\Omega|\textbf{Y},\textbf{U},\textbf{Z})\\
+&=\ln\prod_{i=1}^n\prod_{c=1}^2
+\{\pi_cf_c(Z_{c,i})[\prod_{j=1}^T f_c(Y_{ij}|Z_{c,i})]\}^{w_{ic}}\\
+&=\sum_{i=1}^n\sum_{c=1}^2w_{ic}[\ln\pi_c+\ln f_c(Z_{c,i})+\sum_{j=1}^T\ln f_c(Y_{ij}|Z_{c,i})]\\
+&=\sum_{i=1}^n\sum_{c=1}^2w_{ic}\{\ln\pi_c-\frac{Z_{c,i}^2}{2\sigma_c^2}-\frac{1}{2}\ln(2\pi\sigma_c^2)+\sum_{j=1}^T[Y_{ij}\ln P_{ij}+(1-Y_{ij})\ln(1-P_{ij})]\}\\
+&=n\sum_{c=1}^2w_{ic}[\ln\pi_c-\frac{1}{2}\ln(2\pi\sigma_c^2)]-\sum_{i=1}^n\sum_{c=1}^2w_c\frac{Z_{c,i}^2}{2\sigma_c^2}\\
+&+\sum_{i=1}^n\sum_{c=1}^2w_{ic}\sum_{j=1}^T[Y_{ij}(\beta_cX_{c,ij}+Z_{c,i})-Y_{ij}\ln(1+\exp(\beta_cX_{c,ij}+Z_{c,i}))-(1-Y_{ij})\ln(1+\exp(\beta_cX_{c,ij}+Z_{c,i}))]\\
+&=n\sum_{c=1}^2w_{ic}[\ln\pi_c-\frac{1}{2}\ln(2\pi\sigma_c^2)]\\
+&+\sum_{i=1}^n\sum_{c=1}^2w_c\{-\frac{Z^2_{c,i}}{2\sigma_c^2}+\sum_{j=1}^T[Y_{ij}(\beta_cX_{c,ij}+Z_{c,i})-\ln(1+\exp(\beta_cX_{c,ij}+Z_{c,i}))]\}
+\end{aligned}
+\end{equation*}
+
+which is equal to
+\begin{equation*}
+\begin{aligned}
+l(\Omega|\textbf{Y},\textbf{U},\textbf{Z})&=\sum_{i=1}^n\ln f_{(U_i,Z_{U_i,i})}(U_i,Z_{U_i,i}|\pi_c,\sigma_1,\sigma_2)+\sum_{i=1}^n\sum_{j=1}^T\ln f_{Y_{ij}|(U_i,Z_{U_i,i})}(Y_{ij}|(U_i,Z_{U_i,i}),\beta_1,\beta_2)\\
+&=\triangleq\ln f_{(\textbf{U},\textbf{Z})}(\textbf{U},\textbf{Z}|\pi_c,\sigma_1,\sigma_2)+\ln f_{\textbf{Y}|(\textbf{U},\textbf{Z})}(\textbf{Y}|\textbf{U},\textbf{Z},\beta_1,\beta_2)
+\end{aligned}
+\end{equation*}
+\newpage
+\section{Monte Carlo Expectation Maximization}
+\subsection{EM Algorithm}
+
+By taking expectation of $\textbf{U}$ and $\textbf{Z}$ given $\textbf{Y}$ under the current estimate of the parameters $\Omega^{(t)}$, we could write the expected augmented logged likelihood as
+\begin{equation*}
+\begin{aligned}
+Q(\Omega,\Omega^{(t)})&=\mathbb{E}_{(\textbf{U},\textbf{Z})|(\textbf{Y},\Omega^{(t)})}\ln L(\Omega|\textbf{Y},\textbf{U},\textbf{Z})\\
+&=\mathbb{E}_{(\textbf{U},\textbf{Z})|(\textbf{Y},\Omega^{(t)})}\\
+&=\sum_{i=1}\sum_{c=1}^2\mathbb{E}_{\textbf{U}|(\textbf{Y},\Omega^{(t)})}(w_{ic})[\ln\pi_c-\frac{1}{2}\ln(2\pi\sigma_c^2)]\\
+&+\sum_{i=1}^n\sum_{c=1}^2\mathbb{E}_{(\textbf{U},\textbf{Z})|(\textbf{Y},\Omega^{(t)})}w_c\{-\frac{Z^2_{c,i}}{2\sigma_c^2}+\sum_{j=1}^T[Y_{ij}(\beta_cX_{c,ij}+Z_{c,i})-\ln(1+\exp(\beta_cX_{c,ij}+Z_{c,i}))]\}
+\end{aligned}
+\end{equation*}
+
+Notice that in the expected log-likelihood, $\Omega^{(t)}$ could be decomposed into seperate component
+\begin{equation*}
+\begin{aligned}
+Q(\Omega,\Omega^{(t)})&=\mathbb{E}_{(\textbf{U},\textbf{Z})|(\textbf{Y},\Omega^{(t)})}\ln f_{(\textbf{U},\textbf{Z})}(\textbf{U},\textbf{Z}|\pi_c,\sigma_1,\sigma_2)+\mathbb{E}_{(\textbf{U},\textbf{Z})|(\textbf{Y},\Omega^{(t)})}\ln f_{\textbf{Y}|(\textbf{U},\textbf{Z})}(\textbf{Y}|\textbf{U},\textbf{Z},\beta_1,\beta_2)\\
+&=\triangleq P(\Omega,\Omega^{(t)})+R(\Omega,\Omega^{(t)})
+\end{aligned}
+\end{equation*}
+
+\subsection{Monte Carlo Integrating}
+In order to compute the integral above, we use Monte Carlo Integrating to approximate it. Suppose that $\{(\textbf{U}_{(k)},\textbf{Z}_{(k)},k=1,2,\cdots,K)\}\overset{i.i.d}{\sim}f_{(\textbf{U},\textbf{Z}|\textbf{Y})}(\textbf{U},\textbf{Z}|\textbf{Y}),\Omega)$ and we sample $m$ times to approximate.
+
+Based on Mean Value Method
+\begin{equation}
+Q(\Omega,\Omega^{(t)})\approx \frac{1}{m}\sum_{k=1}^m\sum_{\footnotesize i=1,\\[0.1pt]
+c=U_{(k),i}}\bigg[\ln\pi_c-\frac{1}{2}\ln(2\pi\sigma_c^2)-\frac{Z^2_{c,i}}{2\sigma_c^2}+\sum_{j=1}^T[Y_{ij}(\beta_cX_{c,ij}+Z_{c,i})-\ln(1+\exp(\beta_cX_{c,ij}+Z_{c,i}))\bigg]
+\end{equation}
+
+\subsection{MLE}
+The partial derivatives of the parameters are given by
+\begin{equation*}
+\begin{aligned}
+&\frac{\partial Q(\Omega,\Omega^{(t)})}{\partial\pi_1}=\frac{1}{m}\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k),i},i=1\}}\frac{1}{\pi_1}-\frac{1}{m}\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k),i},i=2\}}\frac{1}{1-\pi_1}\\
+&\frac{\partial Q(\Omega,\Omega^{(t)})}{\partial\sigma_c^2}=\frac{1}{m}\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k),i=c}\}}(-\frac{1}{2\sigma_c^2}+\frac{Z_{(k),c,i}^2}{2\sigma_c^4})\\
+&\frac{\partial Q(\Omega,\Omega^{(t)})}{\partial\beta_c}=\frac{1}{m}\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k),i=c}\}}\sum_{j=1}^T\bigg[Y_ijX_{c,ij}-\frac{X_{c,ij}\exp(\beta_cX_{c,ij}+Z_{(k),c,i})}{1+\exp(\beta_cX_{c,ij}+Z_{(k),c,i})}\bigg]
+\end{aligned}
+\end{equation*}
+
+By setting the above partial derivative to 0, we get the maximum likelihood estimators
+\begin{equation}
+\begin{aligned}
+&\hat{\pi}_1=\frac{1}{mn}\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k)},i=1\}}\\
+&\hat{\sigma}_c = \sqrt{\frac{\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k)},i=c\}}Z^2_{(k),c,i}}{\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k),i=c}\}}}}
+\end{aligned}
+\end{equation}
+
+To compute the MLE of $\beta_c$, we use direct numerical maximization proposed by Newton-Raphson Method. The second order partial derivative of $\beta_c$ is denoted as
+\begin{equation}
+\frac{\partial^2 Q(\Omega,\Omega^{(t)})}{\partial\beta_c^2}=-\frac{1}{m}\sum_{k=1}^m\sum_{i=1}^n\mathbb{I}_{\{U_{(k),i=c}\}}\sum_{j=1}^T\frac{X_{c,ij}^2\exp(\beta_cX_{c,ij}+Z_{(k),c,i})}{(1+\exp(\beta_cX_{c,ij}+Z_{(k),c,i}))^2}
+\end{equation}
+
+\begin{algorithm}[h]
+\caption{Newton-Raphson Method}
+\begin{algorithmic}[1]
+\State Initialize $\hat{\beta}^{(0)}_c$
+\State t$\gets$ 0
+\State $\hat{\beta}_c^{(t+1)}\gets\hat{\beta}_c^{(t)}-\frac{\frac{\partial Q(\Omega,\Omega^{(t)})}{\partial\beta_c}|_{\hat{\beta}_c^{(t)}}}{\frac{\partial^2Q(\Omega,\Omega^{(t)})}{\partial\beta_c^2}|_{\hat{\beta}_c^{(t)}}}$
+\State Repeat step 2-3 until convergence
+\end{algorithmic}
+\end{algorithm}
+
+\section{Markov Chain Sampler}
+
+Since it difficult to sample directly form multivariate distribution $f_{(\textbf{U},\textbf{Z}|\textbf{Y})}(\textbf{U},\textbf{Z}|\textbf{Y}),\Omega)$.We can use Gibbs Sampling, a Markov chain Monte Carlo (MCMC) algorithm to obtain a sequence of observations which are approximated from the multivariate distribution.
+
+First, we need to calculate the conditional distributions
+\begin{equation}
+\frac{f_{(U_i,Z_{(U_i,i)}|\textbf{Y}_i)}(U_i,Z_{U_i,i}|\textbf{Y}_i,\Omega)}{f_{Z_{(U_i,i)}|\textbf{Y}_i}(Z_{U_i,i}|\textbf{Y}_i,\Omega)}=f_{U_i|(Z_{U_i},i,\textbf{Y}_i)}(U_i|Z_{U_i,i},\textbf{Y}_i)
+\end{equation}
+
+and
+\begin{equation}
+\frac{f_{(U_i,Z_{(U_i,i)}|\textbf{Y}_i)}(U_i,Z_{U_i,i}|\textbf{Y}_i,\Omega)}{f_{U_i|\textbf{Y}_i}(U_i|\textbf{Y}_i,\Omega)}=f_{Z_{U_i,i}|(U_i,\textbf{Y}_i)}(Z_{U_i,i}|(U_i,\textbf{Y}_i))
+\end{equation}
+
+Then, suppose that $(U_{(k),i},Z_{(k),U_{(k),i},i})$ is the $i$th component of the $k$th sample, we want to draw the $i$th component of the $(k+1)$th sample. We draw
+\begin{equation*}
+\begin{aligned}
+U_{(k+1),i}&\sim f_{U_i|Z_{U_i,i},\textbf{Y}_i}(u|Z_{U_i,i},\textbf{Y}_i,\Omega)\\
+Z_{(k+1),U_{(k+1),i},i}&\sim f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)
+\end{aligned}
+\end{equation*}
+
+\subsection{Metropolis-Hastings Algorithm}
+
+To sample $Z_{(k+1),U_{(k+1),i},i}$ from $f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)$, let $h_{Z_{U_{(k),i},i}}(z)$ be the candidate distribution. Since the candidate distribution should be similar to $f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)$, we can choose $h_{Z_{U_{(k),i},i}}(z)=f_{U_i}(z|\Omega)$ and the acceptance function is
+\begin{equation*}
+A_{k,\textbf{Y}_i}(z,z^*)=\min\bigg[1,\frac{f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z^*|U_i,\textbf{Y}_i,\Omega)f_{U_i}(z|\Omega)}{f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)f_{U_i}(z^*|\Omega)}\bigg]
+\end{equation*}
+
+where $\frac{f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z^*|U_i,\textbf{Y}_i,\Omega)f_{U_i}(z|\Omega)}{f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)f_{U_i}(z^*|\Omega)}$ can be written as,
+\begin{equation*}
+\begin{aligned}
+\frac{f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z^*|U_i,\textbf{Y}_i,\Omega)f_{U_i}(z|\Omega)}{f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)f_{U_i}(z^*|\Omega)}=\exp\bigg[\sum_{j=1}^TY_{ij}(z^*-z)\bigg]\prod_{j=1}^T\frac{1+\exp(\beta_iX_{ij}+z)}{1+\exp(\beta_iX_{ij}+z^*)}
+\end{aligned}
+\end{equation*}
+
+We begin our Gibbs sampler incorporated a Metropolis-Hastings step as follow
+
+\begin{algorithm}[h]
+\caption{MCMC incorporated Metropolis-Hastings}
+\small
+\begin{algorithmic}
+\For{i=1:n}
+    \State Initialize$(U_{(0),i},Z_{(0),1,i},Z_{(0),2,i})$
+    \For c=1:2
+        \State $k\gets0$
+        \For k=1:$K_2$
+            \State Draw $z^*\sim f_c(z|\Omega)$
+            \State Accept $z^*$ as $Z_{(k+1),c,i}$ with probability $A_{k,\textbf{Y}_i}(z,z^*)$; otherwise, retain the original $Z_{(k),c,i}$
+        \EndFor
+        Burn-in procedure and let the last K+1 samples be the final samples $\{Z_{(k),c,i},k=0,1,\cdots,K\}$
+    \EndFor
+    $k\gets0$
+    \For k=1:$K$
+        Draw $U_{(k+1),i}\sim f_{U_i|Z_{U_i},i,\textbf{Y}_i}(u|Z_{U_i},i,\textbf{Y}_i,\Omega)$
+    \EndFor
+    \State Let the last $m$ samples be the final samples $\{U_{(k),i},k=0,1,\cdots,K\}$
+\EndFor
+\State Burn-in procedure and return the $m$ samples $\{(U_{(i),i},Z_{(i),1,i},Z_{(i),2,i}),k=0,1,\cdots,m\}$
+\end{algorithmic}
+\label{al1}
+\end{algorithm}
+
+\subsection{MCEM}
+
+Unfortunately, we don't known $f_{(\textbf{U},\textbf{Z})|\textbf{Y}}(\textbf{U},\textbf{Z}|\textbf{Y},\Omega)$, so we use$f_{(\textbf{U},\textbf{Z})|\textbf{Y}}(\textbf{U},\textbf{Z}|\textbf{Y},\Omega^{(t)})$ in the $(t+1)$th step to
+estimate the distribution. To generate $\{(U_{(k)},Z_{(k)}), k=1,2,\cdots,m\} \overset{i.i.d}{\sim} f_{(\textbf{U},\textbf{Z})|\textbf{Y}}(\textbf{U},\textbf{Z}|\textbf{Y},\Omega^{(t)})$.
+
+The Monte Carlo Expectation-Maximization Algorithm we use in every stimulation is given by
+
+\begin{algorithm}[H]
+\caption{MCEM}
+\small
+\begin{algorithmic}
+    \State Start with the initial value $\Omega^{(0)}$. Set $t$=0.
+    \State $\textsc{E-step}$: 
+    \State a. Generate $m$ samples $\{(U_{(i),i},Z_{(i),1,i},Z_{(i),2,i}),k=0,1,\cdots,m\}$ form  $f_{Z_{U_i,i}|U_i,\textbf{Y}_i}(z|U_i,\textbf{Y}_i,\Omega)$ through \autoref{al1}
+    \State b.Calculate the partial derivatives of $Q(\Omega,\Omega^{(t)})$, the Monte Carlo estimator for every parameters.
+    \State $\textsc{M-step}$
+    \State $\Omega^{(t+1)}\gets\arg\max_{\Omega}Q(\Omega,\Omega^{(t)})$
+    \State $t\gets t+1$
+    \State Repeat step 2-6 until convergence and then output the maximum likelihood estimators $\Omega^{(t)}$.
+    \end{algorithmic}
+\label{al2}
+\end{algorithm}
+
+\section{Simulation}
 
 \end{document}
