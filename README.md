@@ -1,5 +1,3 @@
- Monte Carlo Expectation Maximization Algorithm
- ====
 
 # Introduction
 
@@ -9,7 +7,7 @@
 
 * Read article: *[Maximum Likelihood Algorithms for Generalized Linear Mixed Models (McCulloch 1997)](www.jstor.org/stable/2291460)*
 
-* See *Project Summary* [here]()
+* See *Project Summary* [here](https://gaochenyin.github.io/Monte-Carlo-Expectation-Maximization/Summary%20Project/Statistics%20Project.pdf)
 
 # Model Notation
 
@@ -154,3 +152,5 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
 
+## Louis Turbo EM
+Since the posterior predictions are hard to be estimated, we can apply some acceleration methods to better estimate them. Therefore, it helps to calibrate the estimating process and save time.
