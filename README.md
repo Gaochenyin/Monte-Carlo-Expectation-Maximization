@@ -152,3 +152,5 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
 
+## Louis Turbo EM
+Since the posterior predictions are hard to be estimated, we can apply some acceleration methods to better estimate them. Therefore, it helps to calibrate the estimating process and save time.
