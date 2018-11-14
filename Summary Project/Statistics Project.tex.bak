@@ -2,7 +2,7 @@
 \usepackage{times}
 \usepackage{caption}
 \DeclareCaptionFont{cheny}{\heiti\fontsize{10}{12}\selectfont}
-
+\captionsetup{font = cheny}
 \usepackage{mathptmx}
 \usepackage{amsthm}
 \hoffset=-2cm \setlength{\topmargin}{-1.0in}
@@ -138,8 +138,6 @@
 \newtheorem{myDef}{Definition}
 \usepackage{amsmath}
 \usepackage{extarrows}
-\usepackage{fontspec}
-\setmainfont{Calibri}
 \setlength{\parindent}{0pt}
 \title{\huge{Computational Statistics\\
 \large{Generalized Linear Mixed Model}}}
@@ -147,11 +145,6 @@
 \normalsize Dept. Statistics, Sun Yat-sen University \\[2pt]}
 \date{}  % 这一行用来去掉默认的日期显示
 \begin{document}
-\captionsetup[figure]{labelfont={bf},labelformat={default},labelsep=period,name={Figure}}
-\captionsetup[table]{labelfont={bf},labelformat={default},labelsep=period,name={Table}}
-
-%\setlength{\abovecaptionskip}{-0.5cm}
-%\setlength{\belowcaptionskip}{-1cm}
 \maketitle
 \tableofcontents
 \section{Progect Summary}
@@ -263,7 +256,7 @@ l(\Omega|\textbf{Y},\textbf{U},\textbf{Z})&=\sum_{i=1}^n\ln f_{(U_i,Z_{U_i,i})}(
 &=\triangleq\ln f_{(\textbf{U},\textbf{Z})}(\textbf{U},\textbf{Z}|\pi_c,\sigma_1,\sigma_2)+\ln f_{\textbf{Y}|(\textbf{U},\textbf{Z})}(\textbf{Y}|\textbf{U},\textbf{Z},\beta_1,\beta_2)
 \end{aligned}
 \end{equation*}
-
+\newpage
 \section{Monte Carlo Expectation Maximization}
 \subsection{EM Algorithm}
 
@@ -414,120 +407,5 @@ The Monte Carlo Expectation-Maximization Algorithm we use in every stimulation i
 \end{algorithm}
 
 \section{Simulation}
-For 1$Y_{ij} = 0$ or $1$, $i = 1,\cdots,n, j = 1,\cdots,T$, we begin our simulations as $n = 100$, $T = 10$ , $\beta_1=\beta_2=1$,$\sigma_1=5$,$\sigma_2=10$,$\pi=0.6$
-\begin{enumerate}
-\item we set the initial value as $\beta_1=\beta_2=0,\sigma_1=1,\sigma_2=5,\pi=0.8$.
-\item Perform variable step-size\footnote{We begin our Monte Carlo Estimation with small sample, as the EM iterate proceeding, we increase our Monte Carlo sampling times accordingly} Gibbs sampling in each EM iteration
-\item Repeat 50 times EM iterate in each experiment
-\item Carry out 1000 experiments under different random seeds and display our first 100 experiments results and 1000 experiments MSE
-\end{enumerate}
-
-\noindent \begin{minipage}[h]{0.5\linewidth}% 并排放两张图片，每张占页面的0.5，下同。
-\begin{figure}[H]
-\caption{Convergence of $\beta_1$}
-\begin{center}
-\includegraphics[width=8cm,height=5cm]{beta1.png}
-\label{Fig1}
-\end{center}
-\end{figure}
-\end{minipage}
-\begin{minipage}[h]{0.5\linewidth}
-\begin{figure}[H]
-\caption{Convergence of $\beta_2$}
-\begin{center}
-\includegraphics[width=8cm,height=5cm]{beta2.png}
-\label{Fig2}
-\end{center}
-\end{figure}
-\end{minipage}
-\\[0.3cm]
-
-\noindent \begin{minipage}[h]{0.5\linewidth}% 并排放两张图片，每张占页面的0.5，下同。
-\begin{figure}[H]
-\caption{Convergence of $\sigma_1$}
-\begin{center}
-\includegraphics[width=8cm,height=5cm]{sigma1.png}
-\label{Fig3}
-\end{center}
-\end{figure}
-\end{minipage}
-\begin{minipage}[h]{0.5\linewidth}
-\begin{figure}[H]
-\caption{Convergence of $\sigma_2$}
-\begin{center}
-\includegraphics[width=8cm,height=5cm]{sigma2.png}
-\label{Fig4}
-\end{center}
-\end{figure}
-\end{minipage}
-
-
-\noindent \begin{minipage}[h]{0.5\linewidth}% 并排放两张图片，每张占页面的0.5，下同。
-\begin{figure}[H]
-\caption{Convergence of $\pi_1$}
-\begin{center}
-\includegraphics[width=8cm,height=5cm]{pi1.png}
-\label{Fig5}
-\end{center}
-\end{figure}
-\end{minipage}
-\begin{minipage}[h]{0.5\linewidth}
-\begin{figure}[H]
-\caption{MSE Timeline}
-\begin{center}
-\includegraphics[width=8cm,height=5cm]{MSE.png}
-\label{Fig6}
-\end{center}
-\end{figure}
-\end{minipage}
-
-\autoref{Fig1}, \autoref{Fig2}, \autoref{Fig3}, \autoref{Fig4} and \autoref{Fig5} show the convergence trace for all 100 experiments, the convergence results is displayed in \autoref{Tab1}. After convergence the value continues to show random variation around a line. This line is the approximate MLE estimated by EM algorithm(\autoref{Fig6}).
-\begin{center}
-\begin{table}[H]
-\caption{Compare real and estimated coefficients}
-\centering
-\begin{tabular}{rrrrrr}
-  \hline
- & $\beta_1$ & $\beta_2$ & $\sigma_1$ & $\sigma_2$ & $\pi_1$ \\
-  \hline
-  Real & 1.000 & 1.000 & 5.000 & 10.000 & 0.600 \\
-  Estimated& 0.990 & 1.404 & 1.327 & 8.479 & 0.455 \\
-   \hline
-\end{tabular}
-\label{Tab1}
-\end{table}
-\end{center}
-
-Also, we can see from \autoref{Tab2} that the MSE of $\hat{\sigma}_2$ is much bigger than other parameters. This may be the result of the difference of the magnitudes.
-
-\begin{center}
-\begin{table}[H]
-\caption{Simulations for $\beta_1(0)=\beta_2(0)=0$,$\sigma_1(0)=1$,$\sigma_2(0)=5$,$\pi_1(0)=0.8$, N = 100}
-\centering
-\begin{tabular}{rrrrrr}
-  \hline
- & $\beta_1$ & $\beta_2$ & $\sigma_1$ & $\sigma_2$ & $\pi_1$  \\
-  \hline
-100 & 0.019 & 0.045 & 0.068 & 0.572 & 0.023 \\
-  200 & 0.018 & 0.044 & 0.068 & 0.567 & 0.023 \\
-  300 & 0.018 & 0.046 & 0.069 & 0.616 & 0.025 \\
-  400 & 0.018 & 0.047 & 0.068 & 0.609 & 0.024 \\
-  500 & 0.019 & 0.046 & 0.069 & 0.610 & 0.025 \\
-  600 & 0.018 & 0.046 & 0.068 & 0.603 & 0.025 \\
-  700 & 0.019 & 0.045 & 0.070 & 0.633 & 0.025 \\
-  800 & 0.019 & 0.045 & 0.068 & 0.627 & 0.025 \\
-  900 & 0.018 & 0.045 & 0.067 & 0.624 & 0.025 \\
-  1000 & 0.018 & 0.045 & 0.067 & 0.623 & 0.024 \\
-   \hline
-\end{tabular}
-\end{table}
-\label{Tab2}
-\end{center}
-
-The MSE is calculated as following
-\begin{equation}
-MSE_{\theta}=\frac{1}{N}\sum_{n=1}^N(\theta^{(n)}-\hat{\theta}^{(n)})^2
-\end{equation}
-
-where $\theta\in\Omega$,$\theta^{(n)}$ is the true MLE of $\theta$ in the nth experiments and $\hat{\theta}^{(n)}$ is the  estimator of $\theta^{(n)}$.
+For 1$Y_{ij} = 0$ or $1$, $i = 1,\cdots,n, j = 1,\cdots,T$,  we set the initial value $n = 100$ and $T = 10$,$\beta_1=\beta_2=1$,$\sigma_1=5$,$\sigma_2=10$,$\pi=0.6$ and carry out 1000
 \end{document}

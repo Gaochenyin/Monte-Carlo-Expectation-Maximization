@@ -1,0 +1,15 @@
+\select@language {english}
+\contentsline {section}{\numberline {1}Progect Summary}{1}{section.1}
+\contentsline {subsection}{\numberline {1.1}Model Notation}{1}{subsection.1.1}
+\contentsline {subsection}{\numberline {1.2}Simulation Setup and Requirement}{2}{subsection.1.2}
+\contentsline {section}{\numberline {2}Generalized Linear Mixed Model(GLMM)}{2}{section.2}
+\contentsline {subsection}{\numberline {2.1}Complete Log-Likelihood}{3}{subsection.2.1}
+\contentsline {section}{\numberline {3}Monte Carlo Expectation Maximization}{4}{section.3}
+\contentsline {subsection}{\numberline {3.1}EM Algorithm}{4}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}Monte Carlo Integrating}{4}{subsection.3.2}
+\contentsline {subsection}{\numberline {3.3}MLE}{4}{subsection.3.3}
+\contentsline {section}{\numberline {4}Markov Chain Sampler}{5}{section.4}
+\contentsline {subsection}{\numberline {4.1}Metropolis-Hastings Algorithm}{6}{subsection.4.1}
+\contentsline {subsection}{\numberline {4.2}MCEM}{6}{subsection.4.2}
+\contentsline {section}{\numberline {5}Simulation}{7}{section.5}
+\contentsfinish 
