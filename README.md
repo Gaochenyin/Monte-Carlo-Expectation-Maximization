@@ -135,6 +135,14 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 * We conducted different number of simulations:<img src="https://latex.codecogs.com/gif.latex?100,200,\cdots,1000" title="100,200,\cdots,1000" /></a> and evaluate the corresponding *MSE*. From the result, we concluded that MCEM could obtain a fair results based on the intialization mentioned before. 
 
+* We demonstrate the first 100 experiments of parameters and its estimation results below
+
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/Monte-Carlo-Expectation-Maximization/blob/master/Summary%20Project/beta1.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/Monte-Carlo-Expectation-Maximization/blob/master/Summary%20Project/beta2.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/Monte-Carlo-Expectation-Maximization/blob/master/Summary%20Project/sigma1.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/Monte-Carlo-Expectation-Maximization/blob/master/Summary%20Project/sigma2.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/Monte-Carlo-Expectation-Maximization/blob/master/Summary%20Project/pi1.png"  width="600" ></div>
+
 * The MSE of <img src="https://latex.codecogs.com/gif.latex?\beta_2" title="\beta_2" /></a> and <img src="https://latex.codecogs.com/gif.latex?\sigma_2" title="\sigma_2" /></a> by MCEM are much bigger than other parameters. This may be the result of the difference of the magnitudes.
 
 |N| <img src="https://latex.codecogs.com/gif.latex?\beta_1" title="\beta_1" /></a>  |<img src="https://latex.codecogs.com/gif.latex?\beta_2" title="\beta_2" /></a> |<img src="https://latex.codecogs.com/gif.latex?\sigma_1" title="\sigma_1" /></a>|<img src="https://latex.codecogs.com/gif.latex?\sigma_2" title="\sigma_2" /></a>|<img src="https://latex.codecogs.com/gif.latex?\pi_1" title="\pi_1" /></a>|
@@ -151,6 +159,7 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 |1000|0.01824120| 0.04517658| 0.06683521| 0.6233873| 0.02449014
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
+
 
 ## Louis Turbo EM
 Since the posterior predictions are hard to be estimated, we can apply some acceleration methods to better estimate them. Therefore, it helps to calibrate the estimating process and save time.
