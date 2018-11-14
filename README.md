@@ -7,7 +7,7 @@
 
 * Read article: *[Maximum Likelihood Algorithms for Generalized Linear Mixed Models (McCulloch 1997)](www.jstor.org/stable/2291460)*
 
-* See *Project Summary* [here](https://gaochenyin.github.io/Monte-Carlo-Expectation-Maximization/Summary%20Project/Statistics%20Project.pdf)
+* See `Project Summary.pdf` [here](https://gaochenyin.github.io/Monte-Carlo-Expectation-Maximization/Summary%20Project/Statistics%20Project.pdf)
 
 # Model Notation
 
