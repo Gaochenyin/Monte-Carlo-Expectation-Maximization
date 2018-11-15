@@ -10,8 +10,8 @@
 * See `Project Summary.pdf` [here](https://gaochenyin.github.io/Monte-Carlo-Expectation-Maximization/Summary%20Project/Statistics%20Project.pdf)
 
 # Contact 
-1. ****gaochy5@mail2.sysu.edu.cn***
-2. ***huangyy733@mail2.sysu.edu.cn***
+1. ***gaochy5@mail2.sysu.edu.cn***
+2. ***huangyy73@mail2.sysu.edu.cn***
 
 # Model Notation
 
