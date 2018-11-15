@@ -9,9 +9,6 @@
 
 * See `Project Summary.pdf` [here](https://gaochenyin.github.io/Monte-Carlo-Expectation-Maximization/Summary%20Project/Statistics%20Project.pdf)
 
-# Contact 
-1. ***gaochy5@mail2.sysu.edu.cn***
-2. ***huangyy73@mail2.sysu.edu.cn***
 
 # Model Notation
 
@@ -187,3 +184,8 @@ So, we have
 Combine the Newton-Raphson with the acceleration results, we obtain
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\theta^{(t&plus;1)}&=\theta^{(t)}&plus;\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;(\theta^{*}-\theta^{(t)})&space;\bigg]\\&space;&=\theta^{(t)}&plus;\bigg[\frac{-\partial^2&space;\log&space;p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})\\&space;&=\theta^{(t)}&plus;\bigg[-\int&space;\frac{\partial^2\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial&space;\log&space;p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\&space;&\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})&space;\bigg]&space;\bigg]&space;\end{aligned}" title="\begin{aligned} \theta^{(t+1)}&=\theta^{(t)}+\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} \bigg]\times\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} (\theta^{*}-\theta^{(t)}) \bigg]\\ &=\theta^{(t)}+\bigg[\frac{-\partial^2 \log p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}} \bigg]\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)})\\ &=\theta^{(t)}+\bigg[-\int \frac{\partial^2\log p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial \log p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\ &\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)}) \bigg] \bigg] \end{aligned}" /></a></a>
+
+# Contact 
+
+1. ***gaochy5@mail2.sysu.edu.cn***
+2. ***huangyy73@mail2.sysu.edu.cn***
