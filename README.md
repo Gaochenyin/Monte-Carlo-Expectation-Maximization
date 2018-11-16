@@ -4,7 +4,7 @@
 # Introduction
 ![reshape2](https://img.shields.io/badge/reshape2-3.5.0-brightgreen.svg)
 ![latex2exp](https://img.shields.io/badge/latex2exp-3.5.0-yellow.svg)
-[![Website](https://img.shields.io/website-Gao,Chenyin-down-orange-red/https/shields.io.svg?label=my-website)](https://gaochenyin.github.io/Personal-Website/Chenyin_Gao)
+
 
 * This project described a Monte Carlo EM (**MCEM**) method to derive Maximum Likelihood Estimates (**MLE**) of the log-likelihood function. 
 
@@ -192,5 +192,5 @@ Combine the Newton-Raphson with the acceleration results, we obtain
 
 # Contact 
 
-1. ***gaochy5@mail2.sysu.edu.cn***
+1. ***gaochy5@mail2.sysu.edu.cn***[![Website](https://img.shields.io/website-Gao,Chenyin-down-orange-red/https/shields.io.svg?label=my-website)](https://gaochenyin.github.io/Personal-Website/Chenyin_Gao)
 2. ***huangyy73@mail2.sysu.edu.cn***
