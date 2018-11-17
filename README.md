@@ -1,5 +1,10 @@
 
+
+
 # Introduction
+![reshape2](https://img.shields.io/badge/reshape2-3.5.0-brightgreen.svg)
+![latex2exp](https://img.shields.io/badge/latex2exp-3.5.0-yellow.svg)
+
 
 * This project described a Monte Carlo EM (**MCEM**) method to derive Maximum Likelihood Estimates (**MLE**) of the log-likelihood function. 
 
@@ -8,6 +13,7 @@
 * Read article: *[Maximum Likelihood Algorithms for Generalized Linear Mixed Models (McCulloch 1997)](www.jstor.org/stable/2291460)*
 
 * See `Project Summary.pdf` [here](https://gaochenyin.github.io/Monte-Carlo-Expectation-Maximization/Summary%20Project/Statistics%20Project.pdf)
+
 
 # Model Notation
 
@@ -102,8 +108,9 @@ However the MLE of <img src="https://latex.codecogs.com/png.latex?\beta_c" title
 
 ## Results
 
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/Data.png"  width="600" ></div>
 
-* EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
+* EM Algorithm is sensitive to the initial values of parameters.
 * For each parameter, we calculate the changing rate of it and let <img src="https://latex.codecogs.com/gif.latex?\epsilon^t" title="\epsilon^t" /></a> be as following
 
 <img src="https://latex.codecogs.com/gif.latex?\epsilon^{t}=\max\{\frac{\hat{\beta}_1^{t&plus;1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}&plus;\delta},\frac{\hat{\beta}_2^{t&plus;1}-\hat{\beta}_2^{t}}{\hat{\beta}_2^{t}&plus;\delta},\frac{\hat{\sigma}_1^{t&plus;1}-\hat{\sigma}_1^{t}}{\hat{\sigma}_1^{t}&plus;\delta},\frac{\hat{\sigma}_2^{t&plus;1}-\hat{\sigma}_2^{t}}{\hat{\sigma}_2^{t}&plus;\delta},\frac{\hat{\pi}_1^{t&plus;1}-\hat{\pi}_1^{t}}{\hat{\pi}_1^{t}&plus;\delta}\}" title="\epsilon^{t}=\max\{\frac{\hat{\beta}_1^{t+1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}+\delta},\frac{\hat{\beta}_2^{t+1}-\hat{\beta}_2^{t}}{\hat{\beta}_2^{t}+\delta},\frac{\hat{\sigma}_1^{t+1}-\hat{\sigma}_1^{t}}{\hat{\sigma}_1^{t}+\delta},\frac{\hat{\sigma}_2^{t+1}-\hat{\sigma}_2^{t}}{\hat{\sigma}_2^{t}+\delta},\frac{\hat{\pi}_1^{t+1}-\hat{\pi}_1^{t}}{\hat{\pi}_1^{t}+\delta}\}" /></a>
@@ -183,3 +190,8 @@ So, we have
 Combine the Newton-Raphson with the acceleration results, we obtain
 
 <img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\theta^{(t&plus;1)}&=\theta^{(t)}&plus;\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;(\theta^{*}-\theta^{(t)})&space;\bigg]\\&space;&=\theta^{(t)}&plus;\bigg[\frac{-\partial^2&space;\log&space;p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})\\&space;&=\theta^{(t)}&plus;\bigg[-\int&space;\frac{\partial^2\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial&space;\log&space;p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\&space;&\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})&space;\bigg]&space;\bigg]&space;\end{aligned}" title="\begin{aligned} \theta^{(t+1)}&=\theta^{(t)}+\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} \bigg]\times\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} (\theta^{*}-\theta^{(t)}) \bigg]\\ &=\theta^{(t)}+\bigg[\frac{-\partial^2 \log p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}} \bigg]\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)})\\ &=\theta^{(t)}+\bigg[-\int \frac{\partial^2\log p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial \log p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\ &\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)}) \bigg] \bigg] \end{aligned}" /></a></a>
+
+# Contact 
+
+1. ***gaochy5@mail2.sysu.edu.cn***[![Website](https://img.shields.io/website-Gao,Chenyin-down-orange-red/https/shields.io.svg?label=my-website)](https://gaochenyin.github.io/Personal-Website/Chenyin_Gao)
+2. ***huangyy73@mail2.sysu.edu.cn***
