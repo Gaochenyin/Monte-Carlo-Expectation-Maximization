@@ -195,6 +195,15 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
 
+### LTEM vs. MCEM
+
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_beta1.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_beta2.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_sigma1.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_sigma2.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_pi1.png"  width="600" ></div>
+
+Louis Turbo EM accelerates the EM algorithm as we can see that LTEM attains better result with good fixed initialization
 # Contact 
 
 1. ***gaochy5@mail2.sysu.edu.cn***[![Website](https://img.shields.io/website-Gao,Chenyin-down-orange-red/https/shields.io.svg?label=my-website)](https://gaochenyin.github.io/Personal-Website/Chenyin_Gao)
