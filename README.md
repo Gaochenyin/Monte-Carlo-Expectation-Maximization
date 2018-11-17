@@ -134,7 +134,7 @@ Combine the Newton-Raphson with the acceleration results, we obtain
 ## Results
 
 ### Data Set Up
-<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/Data.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/all_data.png"  width="600" ></div>
 
 ### MCEM
 * EM Algorithm is sensitive to the initial values of parameters.
