@@ -108,8 +108,9 @@ However the MLE of <img src="https://latex.codecogs.com/png.latex?\beta_c" title
 
 ## Results
 
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/Data.png"  width="600" ></div>
 
-* EM Algorithm is sensitive to the initial values of parameters. We choose two fixed initialization.
+* EM Algorithm is sensitive to the initial values of parameters.
 * For each parameter, we calculate the changing rate of it and let <img src="https://latex.codecogs.com/gif.latex?\epsilon^t" title="\epsilon^t" /></a> be as following
 
 <img src="https://latex.codecogs.com/gif.latex?\epsilon^{t}=\max\{\frac{\hat{\beta}_1^{t&plus;1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}&plus;\delta},\frac{\hat{\beta}_2^{t&plus;1}-\hat{\beta}_2^{t}}{\hat{\beta}_2^{t}&plus;\delta},\frac{\hat{\sigma}_1^{t&plus;1}-\hat{\sigma}_1^{t}}{\hat{\sigma}_1^{t}&plus;\delta},\frac{\hat{\sigma}_2^{t&plus;1}-\hat{\sigma}_2^{t}}{\hat{\sigma}_2^{t}&plus;\delta},\frac{\hat{\pi}_1^{t&plus;1}-\hat{\pi}_1^{t}}{\hat{\pi}_1^{t}&plus;\delta}\}" title="\epsilon^{t}=\max\{\frac{\hat{\beta}_1^{t+1}-\hat{\beta}_1^{t}}{\hat{\beta}_1^{t}+\delta},\frac{\hat{\beta}_2^{t+1}-\hat{\beta}_2^{t}}{\hat{\beta}_2^{t}+\delta},\frac{\hat{\sigma}_1^{t+1}-\hat{\sigma}_1^{t}}{\hat{\sigma}_1^{t}+\delta},\frac{\hat{\sigma}_2^{t+1}-\hat{\sigma}_2^{t}}{\hat{\sigma}_2^{t}+\delta},\frac{\hat{\pi}_1^{t+1}-\hat{\pi}_1^{t}}{\hat{\pi}_1^{t}+\delta}\}" /></a>
