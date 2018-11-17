@@ -106,10 +106,37 @@ However the MLE of <img src="https://latex.codecogs.com/png.latex?\beta_c" title
 <img src="https://latex.codecogs.com/png.latex?\beta_c^{(t&plus;1)}&space;=\beta^{(t)}_c&plus;\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T(Y_{ij}X_{ij}-\frac{X_{c,ij}e^{(\beta_c^tX_{c,ij}&plus;Z_{c,i})}}{1&plus;e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}}})}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T\frac{X_{c,ij}^2e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}}}{(1&plus;e^{\beta_c^tX_{c,ij}&plus;Z_{c,i}})^2}}" title="\beta_c^{(t+1)} =\beta^{(t)}_c+\frac{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T(Y_{ij}X_{ij}-\frac{X_{c,ij}e^{(\beta_c^tX_{c,ij}+Z_{c,i})}}{1+e^{\beta_c^tX_{c,ij}+Z_{c,i}}})}{\sum_{i=1}^n\mathbb{I}_{\{U_i=c\}}\sum_{j=1}^T\frac{X_{c,ij}^2e^{\beta_c^tX_{c,ij}+Z_{c,i}}}{(1+e^{\beta_c^tX_{c,ij}+Z_{c,i}})^2}}" /></a>
 
 
+
+## Louis Turbo EM
+Since the posterior predictions are hard to be estimated, we can apply some acceleration methods to better estimate them. Therefore, it helps to calibrate the estimating process and save time.
+
+> The convergence of EM algorithm is governed by the fraction of missing information. Thus, when the proportion of missing data is high, convergence can be quite slow.  In this regard, Louis (1982) has proposed a device for accelerating the convergence of the EM algorithm.
+
+The former iterative maximization of posterior predictive function could be written as<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\theta^{(t&plus;1))}&space;&=&space;\theta^{(t)}&plus;\bigg[-\frac{\partial^2Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^*}&space;\bigg]^{-1}&space;\frac{\partial&space;Q(\theta,\theta^{(t)})}{\partial\theta}\\&space;&=\theta^{(t)}&plus;\bigg[-\frac{\partial^2&space;\log&space;p(\theta,|Y)}{\partial\theta^2}\bigg|_{\theta^*}&space;\bigg]^{-1}&space;\frac{\partial&space;\log&space;p(\theta,|Y)}{\partial\theta}&space;\end{aligned}" title="\begin{aligned} \theta^{(t+1))} &= \theta^{(t)}+\bigg[-\frac{\partial^2Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^*} \bigg]^{-1} \frac{\partial Q(\theta,\theta^{(m)})}{\partial\theta}\\ &=\theta^{(t)}+\bigg[-\frac{\partial^2 \log p(\theta,|Y)}{\partial\theta^2}\bigg|_{\theta^*} \bigg]^{-1} \frac{\partial \log p(\theta,|Y)}{\partial\theta} \end{aligned}" /></a>
+
+where <img src="https://latex.codecogs.com/gif.latex?\theta^*" title="\theta^*" /></a> is the mode of the augmented posterior predictive function. 
+
+Expanding <img src="https://latex.codecogs.com/gif.latex?\partial&space;Q(\theta,\theta^{(t)})/\partial&space;\theta" title="\partial Q(\theta,\theta^{(t)})/\partial \theta" /></a>  about  <img src="https://latex.codecogs.com/gif.latex?\theta^{(t)}" title="\theta^{(t)}" /></a>,  we  have
+
+<img src="https://latex.codecogs.com/gif.latex?0=\frac{\partial&space;Q(\theta,\theta^{(t)})}{\partial\theta}\bigg|_{\theta^*}\approx&space;\frac{\partial&space;Q(\theta,\theta^{(t)})}{\theta}\bigg|_{\theta^{(t)}}&plus;\bigg[\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]&space;(\theta^*-\theta)" title="0=\frac{\partial Q(\theta,\theta^{(t)})}{\partial\theta}\bigg|_{\theta^*}\approx \frac{\partial Q(\theta,\theta^{(t)})}{\theta}\bigg|_{\theta^{(t)}}+\bigg[\frac{\partial^2 Q(\theta,\theta^{(t)})}{\theta^2}\bigg|_{\theta^{(t)}} \bigg] (\theta^*-\theta)" /></a>
+
+> Louis also notes that this approximation is the most useful  in  a neighborhood  of  the mode <img src="https://latex.codecogs.com/gif.latex?\theta^*" title="\theta^*" />.
+
+So, we have 
+
+<img src="https://latex.codecogs.com/gif.latex?\frac{\partial&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta}\bigg|_{\theta^{(t)}}=&space;-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^{(t)}}(\theta^*-\theta^{(t)})" title="\frac{\partial Q(\theta,\theta^{(t)})}{\partial \theta}\bigg|_{\theta^{t}}= -\frac{\partial Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^{(t)}}(\theta^*-\theta^{(t)})" /></a>
+
+Combine the Newton-Raphson with the acceleration results, we obtain
+
+<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\theta^{(t&plus;1)}&=\theta^{(t)}&plus;\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;(\theta^{*}-\theta^{(t)})&space;\bigg]\\&space;&=\theta^{(t)}&plus;\bigg[\frac{-\partial^2&space;\log&space;p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})\\&space;&=\theta^{(t)}&plus;\bigg[-\int&space;\frac{\partial^2\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial&space;\log&space;p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\&space;&\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})&space;\bigg]&space;\bigg]&space;\end{aligned}" title="\begin{aligned} \theta^{(t+1)}&=\theta^{(t)}+\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} \bigg]\times\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} (\theta^{*}-\theta^{(t)}) \bigg]\\ &=\theta^{(t)}+\bigg[\frac{-\partial^2 \log p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}} \bigg]\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)})\\ &=\theta^{(t)}+\bigg[-\int \frac{\partial^2\log p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial \log p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\ &\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)}) \bigg] \bigg] \end{aligned}" /></a></a>
+
+
 ## Results
 
+### Data Set Up
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/Data.png"  width="600" ></div>
 
+### MCEM
 * EM Algorithm is sensitive to the initial values of parameters.
 * For each parameter, we calculate the changing rate of it and let <img src="https://latex.codecogs.com/gif.latex?\epsilon^t" title="\epsilon^t" /></a> be as following
 
@@ -118,6 +145,7 @@ However the MLE of <img src="https://latex.codecogs.com/png.latex?\beta_c" title
 where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" /></a> is to assure that the denominator is positive. Setting the threshold <img src="https://latex.codecogs.com/gif.latex?\epsilon_0" title="\epsilon_0" /></a>, if <img src="https://latex.codecogs.com/gif.latex?\epsilon^t<\epsilon_0" title="\epsilon^t<\epsilon_0" /></a> then we will consider the simulation converges.
 
 * In this project, we choose <img src="https://latex.codecogs.com/gif.latex?\delta=10^{-12},\epsilon_0=2.5*10^{-2}" title="\delta=10^{-12},\epsilon_0=2.5*10^{-2}" /></a>
+
 ### Values
 
 * Our convergences are pretty good, all parameters are **converged** in less than *50* steps, which cost about 1 minute.
@@ -167,30 +195,15 @@ where <img src="https://latex.codecogs.com/gif.latex?\delta>0" title="\delta>0" 
 
 <div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/MSE.png"  width="600" ></div>
 
+### LTEM vs. MCEM
 
-## Louis Turbo EM
-Since the posterior predictions are hard to be estimated, we can apply some acceleration methods to better estimate them. Therefore, it helps to calibrate the estimating process and save time.
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_beta1.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_beta2.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_sigma1.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_sigma2.png"  width="600" ></div>
+<div style="float:left;border:solid 1px 000;margin:2px;"><img src="https://github.com/Gaochenyin/MCEM/blob/master/LTEM_pi1.png"  width="600" ></div>
 
-> The convergence of EM algorithm is governed by the fraction of missing information. Thus, when the proportion of missing data is high, convergence can be quite slow.  In this regard, Louis (1982) has proposed a device for accelerating the convergence of the EM algorithm.
-
-The former iterative maximization of posterior predictive function could be written as<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\theta^{(t&plus;1))}&space;&=&space;\theta^{(t)}&plus;\bigg[-\frac{\partial^2Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^*}&space;\bigg]^{-1}&space;\frac{\partial&space;Q(\theta,\theta^{(t)})}{\partial\theta}\\&space;&=\theta^{(t)}&plus;\bigg[-\frac{\partial^2&space;\log&space;p(\theta,|Y)}{\partial\theta^2}\bigg|_{\theta^*}&space;\bigg]^{-1}&space;\frac{\partial&space;\log&space;p(\theta,|Y)}{\partial\theta}&space;\end{aligned}" title="\begin{aligned} \theta^{(t+1))} &= \theta^{(t)}+\bigg[-\frac{\partial^2Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^*} \bigg]^{-1} \frac{\partial Q(\theta,\theta^{(m)})}{\partial\theta}\\ &=\theta^{(t)}+\bigg[-\frac{\partial^2 \log p(\theta,|Y)}{\partial\theta^2}\bigg|_{\theta^*} \bigg]^{-1} \frac{\partial \log p(\theta,|Y)}{\partial\theta} \end{aligned}" /></a>
-
-where <img src="https://latex.codecogs.com/gif.latex?\theta^*" title="\theta^*" /></a> is the mode of the augmented posterior predictive function. 
-
-Expanding <img src="https://latex.codecogs.com/gif.latex?\partial&space;Q(\theta,\theta^{(t)})/\partial&space;\theta" title="\partial Q(\theta,\theta^{(t)})/\partial \theta" /></a>  about  <img src="https://latex.codecogs.com/gif.latex?\theta^{(t)}" title="\theta^{(t)}" /></a>,  we  have
-
-<img src="https://latex.codecogs.com/gif.latex?0=\frac{\partial&space;Q(\theta,\theta^{(t)})}{\partial\theta}\bigg|_{\theta^*}\approx&space;\frac{\partial&space;Q(\theta,\theta^{(t)})}{\theta}\bigg|_{\theta^{(t)}}&plus;\bigg[\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]&space;(\theta^*-\theta)" title="0=\frac{\partial Q(\theta,\theta^{(t)})}{\partial\theta}\bigg|_{\theta^*}\approx \frac{\partial Q(\theta,\theta^{(t)})}{\theta}\bigg|_{\theta^{(t)}}+\bigg[\frac{\partial^2 Q(\theta,\theta^{(t)})}{\theta^2}\bigg|_{\theta^{(t)}} \bigg] (\theta^*-\theta)" /></a>
-
-> Louis also notes that this approximation is the most useful  in  a neighborhood  of  the mode <img src="https://latex.codecogs.com/gif.latex?\theta^*" title="\theta^*" />.
-
-So, we have 
-
-<img src="https://latex.codecogs.com/gif.latex?\frac{\partial&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta}\bigg|_{\theta^{(t)}}=&space;-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^{(t)}}(\theta^*-\theta^{(t)})" title="\frac{\partial Q(\theta,\theta^{(t)})}{\partial \theta}\bigg|_{\theta^{t}}= -\frac{\partial Q(\theta,\theta^{(t)})}{\partial\theta^2}\bigg|_{\theta^{(t)}}(\theta^*-\theta^{(t)})" /></a>
-
-Combine the Newton-Raphson with the acceleration results, we obtain
-
-<img src="https://latex.codecogs.com/gif.latex?\begin{aligned}&space;\theta^{(t&plus;1)}&=\theta^{(t)}&plus;\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times\bigg[-\frac{\partial^2&space;Q(\theta,\theta^{(t)})}{\partial&space;\theta^2}\bigg|_{\theta^{(t)}}&space;(\theta^{*}-\theta^{(t)})&space;\bigg]\\&space;&=\theta^{(t)}&plus;\bigg[\frac{-\partial^2&space;\log&space;p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}}&space;\bigg]\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})\\&space;&=\theta^{(t)}&plus;\bigg[-\int&space;\frac{\partial^2\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial&space;\log&space;p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\&space;&\times&space;\bigg[-\int\frac{\partial^2&space;\log&space;p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg]&space;(\theta^{*}-\theta^{(t)})&space;\bigg]&space;\bigg]&space;\end{aligned}" title="\begin{aligned} \theta^{(t+1)}&=\theta^{(t)}+\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} \bigg]\times\bigg[-\frac{\partial^2 Q(\theta,\theta^{(t)})}{\partial \theta^2}\bigg|_{\theta^{(t)}} (\theta^{*}-\theta^{(t)}) \bigg]\\ &=\theta^{(t)}+\bigg[\frac{-\partial^2 \log p(\theta|Y)}{\theta^2}\bigg|_{\theta^{(t)}} \bigg]\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)})\\ &=\theta^{(t)}+\bigg[-\int \frac{\partial^2\log p(\theta|Y,Z)}{\partial\theta^2}p(Z|\theta^{(t)},Y)dZ\bigg|_{\theta^{(t)}}-var\bigg[\frac{\partial \log p(\theta|Y,Z)}{\partial\theta}\bigg|_{\theta^{(t)}}\\ &\times \bigg[-\int\frac{\partial^2 \log p(\theta|Y,Z)}{\partial\theta^2}p(Z|Y,\theta^{(t)})dZ\bigg|_{\theta^{(t)}}\bigg] (\theta^{*}-\theta^{(t)}) \bigg] \bigg] \end{aligned}" /></a></a>
-
+Louis Turbo EM accelerates the EM algorithm as we can see that LTEM attains better result with good fixed initialization
 # Contact 
 
 1. ***gaochy5@mail2.sysu.edu.cn***[![Website](https://img.shields.io/website-Gao,Chenyin-down-orange-red/https/shields.io.svg?label=my-website)](https://gaochenyin.github.io/Personal-Website/Chenyin_Gao)
