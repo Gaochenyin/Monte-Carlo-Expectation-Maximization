@@ -6,7 +6,7 @@
 ![latex2exp](https://img.shields.io/badge/latex2exp-3.5.0-yellow.svg)
 
 
-[![GitHub followers](https://img.shields.io/github/followers/espadrine.svg?label=GitHub&style=social)](https://github.com/Gaochenyin)
+[![GitHub followers](https://img.shields.io/github/followers/Gaochenyin.svg?label=Followers&style=social)](https://github.com/Gaochenyin)
 
 * This project described a Monte Carlo EM (**MCEM**) method to derive Maximum Likelihood Estimates (**MLE**) of the log-likelihood function. 
 
